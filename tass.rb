@@ -38,12 +38,18 @@ sleep(0.25)
 while true
   print "$ "
   cmd = gets.chomp
-  if cmd == "users"
+  if cmd == "help"
+    
+  elsif cmd == "users"
     if (not File.exists?(Glob::users))
-      puts "No users exist"
+      puts "No users exist.\nUser 'user -n username' to create a new user."
     end
+  elsif cmd == "quit"
+    puts "Goodbye."
+    break
   else
     puts "Command '" + cmd + "' not found."
+    puts "User 'help' for more information."
   end
 end
 

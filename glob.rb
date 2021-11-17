@@ -10,6 +10,20 @@ module Glob
   def clear
     puts "\e[H\e[2J"
   end
+
+  def cmds
+    {
+      "help" => "Get information about TAssign commands.",
+      "quit" => "Quit the program",
+      "users" => "List existing users."
+      "user" => "
+                  Select or create a user.\n\n
+                  
+                  Options:\n\n
+                    
+                    -n : user -n newuser\n
+                         Creates a new user with username newuser
+                "
 end
 
 
