@@ -15,15 +15,12 @@ module Glob
     {
       "help" => "Get information about TAssign commands.",
       "quit" => "Quit the program",
-      "users" => "List existing users."
-      "user" => "
-                  Select or create a user.\n\n
-                  
-                  Options:\n\n
-                    
-                    -n : user -n newuser\n
-                         Creates a new user with username newuser
-                "
+      "users" => "List existing users.",
+      "user" => "  Select or create a user.\n"\
+                "  Options:\n"\
+                "    -n : user -n newuser\n"\
+                "         Creates a new user with username newuser",
+      "clear" => "Clear the terminal."
+    }
+  end
 end
-
-

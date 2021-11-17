@@ -1,5 +1,8 @@
 require_relative 'glob.rb'
+require_relative 'cmd.rb'
+
 include Glob
+include Cmd
 
 welcome = Array[
   "  ___________________",
@@ -25,9 +28,11 @@ welcome = Array[
   "                         |  '''  |",
   "                         \\_______/"
 ]
+prompt = "$ "
+
+
 
 Glob::clear
-sleep(0.5)
 for msg in welcome
   puts "\t" + msg
   sleep(0.01)
@@ -36,20 +41,31 @@ end
 sleep(0.25)
 
 while true
-  print "$ "
+  print prompt
   cmd = gets.chomp
-  if cmd == "help"
-    
-  elsif cmd == "users"
-    if (not File.exists?(Glob::users))
-      puts "No users exist.\nUser 'user -n username' to create a new user."
+  
+  unless cmd.empty?
+    case cmd
+    when "help"
+      Cmd::help
+
+    when "quit"
+      puts "Goodbye."
+      break
+
+    when "clear"
+      Cmd::clear
+
+    when "users"
+      Cmd::users
+
+    when "user"
+      Glob::clear
+
+    else
+      puts "Command '" + cmd + "' does not exist.\nUser 'help' for more info."
     end
-  elsif cmd == "quit"
-    puts "Goodbye."
-    break
-  else
-    puts "Command '" + cmd + "' not found."
-    puts "User 'help' for more information."
   end
+    #if (not File.exists?(Glob::users))
 end
 
