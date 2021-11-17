@@ -33,12 +33,12 @@ prompt = "$ "
 
 
 Glob::clear
+sleep(0.1)
 for msg in welcome
   puts "\t" + msg
   sleep(0.01)
 end
 
-sleep(0.25)
 
 while true
   print prompt
@@ -60,7 +60,7 @@ while true
       Cmd::users
 
     when "user"
-      Glob::clear
+      Glob::user
 
     else
       puts "Command '" + cmd + "' does not exist.\nUser 'help' for more info."

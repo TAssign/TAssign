@@ -13,14 +13,14 @@ module Glob
 
   def cmds
     {
-      "help" => "Get information about TAssign commands.",
-      "quit" => "Quit the program",
-      "users" => "List existing users.",
-      "user" => "  Select or create a user.\n"\
-                "  Options:\n"\
-                "    -n : user -n newuser\n"\
-                "         Creates a new user with username newuser",
-      "clear" => "Clear the terminal."
+      "help" => "\tGet information about TAssign commands",
+      "quit" => "\tQuit the program",
+      "users" => "\tList existing users",
+      "user" => "\tSelect or create a user\n"\
+                "\tOptions:\n"\
+                "\t\t-n : user -n newuser\n"\
+                "\t\t\tCreates a new user with username newuser",
+      "clear" => "\tClear the terminal"
     }
   end
 end

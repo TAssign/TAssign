@@ -10,6 +10,7 @@ module Cmd
       puts "\n#{key}".colorize(:light_white)
       puts "#{value}".colorize(:green)
     end
+    puts ""
   end
 
   def users
