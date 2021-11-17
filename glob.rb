@@ -1,7 +1,11 @@
-def users
-  '~/.tassign/users.json'
+module Glob
+  def users
+    '~/.tassign/users.json'
+  end
+
+  def years
+    '~/.tassign/years/'
+  end
 end
 
-def years
-  '~/.tassign/years/'
-end
+

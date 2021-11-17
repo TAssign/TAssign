@@ -1,5 +1,6 @@
 require_relative 'glob.rb'
+include Glob
 
-puts users
-puts years
+puts Glob::users
+puts Glob::years
 
