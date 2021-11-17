@@ -35,8 +35,15 @@ end
 
 sleep(0.25)
 
-if (File.exists?(Glob::users))
-  puts "Please enter your username from below."
-else
-  puts "No users"
+while true
+  print "$ "
+  cmd = gets.chomp
+  if cmd == "users"
+    if (not File.exists?(Glob::users))
+      puts "No users exist"
+    end
+  else
+    puts "Command '" + cmd + "' not found."
+  end
 end
+
