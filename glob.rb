@@ -51,12 +51,12 @@ module Glob
     def write(file, data)
       Sysfile.sysfile_status(file)
       if File.exists?(file.name)
-        out_file = File.open(file.name)
+        out_file = File.open(file.name, "w+")
         out_file.write(JSON.pretty_generate(data))
         out_file.close
       else
         File.new(file.name, "w+")
-        write(file, text)
+        write(file, data)
       end
     end
 

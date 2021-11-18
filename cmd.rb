@@ -45,7 +45,7 @@ class Cmd
       
       if options[0] == "-n"
           if options[1] != nil
-            Glob::FileHandler::write(Glob::FileHandler::users, options[1])
+            Glob::FileHandler.write(Glob::FileHandler.dirs["users_sf"], options[1])
           else
             puts "No username entered.\nFollow 'user -n <username>'\n"
           end
