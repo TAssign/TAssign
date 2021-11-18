@@ -12,24 +12,33 @@ module Glob
       end
 
       def self.sysfile_status(obj)
-        if not file.is_a?("Sysfile")
+        if not obj.is_a?(Sysfile)
           raise "ArgumentError: Sysfile required"
         end
       end
     end
     
-    uf = Sysfile.new('~/.tassign/users.json')
-    yf = Sysfile.new('~/.tassign/years/')
+    bin = '/usr/local/bin'
+    @@dirs = {
+      "tass_sf" => Sysfile.new(bin + '/tassign/'),
+      "users_sf" => Sysfile.new(bin + '/tassign/users.json'),
+      "years_sf" => Sysfile.new(bin + '/tassign/years/')
+    }
+
+    def dirs
+      @@dirs
+    end
+  
     def users
-      uf
+      @@dirs["tass_sf"]
     end
 
     def years
-      yf
+      @@dirs["years_sf"]
     end
 
     def read(file)
-      Sysfile.sysfile_status
+      Sysfile.sysfile_status(file)
       if File.exists?(file.name)
         in_file = File.read(file.name)
         data = JSON.parse(in_file)
@@ -40,10 +49,10 @@ module Glob
     end
 
     def write(file, data)
-      Sysfile.sysfile_status
-      if (File.exists?(file.name))
+      Sysfile.sysfile_status(file)
+      if File.exists?(file.name)
         out_file = File.open(file.name)
-        out_file.puts(text)
+        out_file.write(JSON.pretty_generate(data))
         out_file.close
       else
         File.new(file.name, "w+")
@@ -51,8 +60,6 @@ module Glob
       end
     end
 
-    def check(name)
-    end
   end
 
   def cmds

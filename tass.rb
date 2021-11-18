@@ -1,8 +1,18 @@
+require 'fileutils'
 require_relative 'glob.rb'
 require_relative 'cmd.rb'
 
 include Glob
-#include Cmd
+
+begin
+  Glob::dirs.each do |key, value|
+    unless Dir.exist?(value.name) or value.name[-1] != '/'
+      FileUtils.mkdir_p(value.name)
+    end
+  end
+rescue Errno::ENOENT
+  raise "Errno::ENOENT - Folder does not exist"
+end
 
 welcome = Array[
   "  ___________________",
@@ -31,8 +41,7 @@ welcome = Array[
 prompt = "$ "
 
 
-
-Glob::clear
+Cmd::Clear.call
 sleep(0.1)
 for msg in welcome
   puts "\t" + msg
@@ -56,7 +65,7 @@ while true
       break
 
     when "clear"
-      Cmd::clear
+      Cmd::Clear.call
 
     when "users"
       Cmd::Users.call(cmds)

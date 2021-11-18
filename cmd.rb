@@ -1,10 +1,11 @@
+require 'colorize'
 require_relative 'glob.rb'
 
 include Glob
+include Glob::FileHandler
 
 
 class Cmd
-  require 'colorize'
 
   class Help
     def self.call
@@ -13,6 +14,12 @@ class Cmd
         puts "#{value}".colorize(:green)
       end
       puts ""
+    end
+  end
+
+  class Clear
+    def self.call
+      puts "\e[H\e[2J"
     end
   end
 
@@ -29,7 +36,6 @@ class Cmd
   end
 
   class User
-
     def check_exists(user)
 
     end
@@ -39,8 +45,7 @@ class Cmd
       
       if options[0] == "-n"
           if options[1] != nil
-            puts "new user " + options[1] + "\n"
-             
+            Glob::FileHandler::write(Glob::FileHandler::users, options[1])
           else
             puts "No username entered.\nFollow 'user -n <username>'\n"
           end
