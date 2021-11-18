@@ -2,7 +2,7 @@ require_relative 'glob.rb'
 require_relative 'cmd.rb'
 
 include Glob
-include Cmd
+#include Cmd
 
 welcome = Array[
   "  ___________________",
@@ -45,9 +45,11 @@ while true
   cmd = gets.chomp
   
   unless cmd.empty?
-    case cmd
+    cmds = cmd.split(' ')
+
+    case cmds[0]
     when "help"
-      Cmd::help
+      Cmd::Help.call
 
     when "quit"
       puts "Goodbye."
@@ -57,15 +59,14 @@ while true
       Cmd::clear
 
     when "users"
-      Cmd::users
+      Cmd::Users.call(cmds)
 
     when "user"
-      Glob::user
+      Cmd::User.call(cmds)
 
     else
       puts "Command '" + cmd + "' does not exist.\nUser 'help' for more info."
     end
   end
-    #if (not File.exists?(Glob::users))
 end
 

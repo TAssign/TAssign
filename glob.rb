@@ -1,14 +1,58 @@
 module Glob
-  def users
-    '~/.tassign/users.json'
-  end
+  module FileHandler
+    require 'json'
 
-  def years
-    '~/.tassign/years/'
-  end
+    class Sysfile
+      def initialize(name)
+        @name = name
+      end
 
-  def clear
-    puts "\e[H\e[2J"
+      def name
+        return @name
+      end
+
+      def self.sysfile_status(obj)
+        if not file.is_a?("Sysfile")
+          raise "ArgumentError: Sysfile required"
+        end
+      end
+    end
+    
+    uf = Sysfile.new('~/.tassign/users.json')
+    yf = Sysfile.new('~/.tassign/years/')
+    def users
+      uf
+    end
+
+    def years
+      yf
+    end
+
+    def read(file)
+      Sysfile.sysfile_status
+      if File.exists?(file.name)
+        in_file = File.read(file.name)
+        data = JSON.parse(in_file)
+        return data
+      else
+        return false
+      end
+    end
+
+    def write(file, data)
+      Sysfile.sysfile_status
+      if (File.exists?(file.name))
+        out_file = File.open(file.name)
+        out_file.puts(text)
+        out_file.close
+      else
+        File.new(file.name, "w+")
+        write(file, text)
+      end
+    end
+
+    def check(name)
+    end
   end
 
   def cmds
