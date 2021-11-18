@@ -1,5 +1,5 @@
 class Student
-attr_reader :name, :email
+attr_accessor :name, :email
 
   def initialize(name, email="")
     @name = name
