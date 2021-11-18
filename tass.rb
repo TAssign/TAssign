@@ -67,11 +67,11 @@ while true
     when "clear"
       Cmd::Clear.call
 
-    when "users"
-      Cmd::Users.call(cmds)
+    when "studs"
+      Cmd::Studs.call(cmds)
 
-    when "user"
-      Cmd::User.call(cmds)
+    when "stud"
+      Cmd::Stud.call(cmds)
 
     else
       puts "Command '" + cmd + "' does not exist.\nUser 'help' for more info."

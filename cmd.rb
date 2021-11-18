@@ -23,34 +23,34 @@ class Cmd
     end
   end
 
-  class Users
-    def self.call(options=["users"])
+  class Studs
+    def self.call(options=["studs"])
       options.shift()
 
       if options[0] == "-v"
-        puts "Verbose users output"
+        puts "Verbose studs output"
       elsif options[0] == nil
-        puts "Printing all users"
+        puts "Printing all studs"
       end
     end
   end
 
-  class User
-    def check_exists(user)
+  class Stud
+    def check_exists(stud)
 
     end
 
-    def self.call(options=["user"])
+    def self.call(options=["stud"])
       options.shift()
       
       if options[0] == "-n"
           if options[1] != nil
-            Glob::FileHandler.write(Glob::FileHandler.dirs["users_sf"], options[1])
+            Glob::FileHandler.write(Glob::FileHandler.dirs["studs_sf"], options[1])
           else
             puts "No username entered.\nFollow 'user -n <username>'\n"
           end
       else
-        puts "Invalid options. Please see 'help user' for more information."
+        puts "Invalid options. Please see 'help stud' for more information."
       end
     end
   end

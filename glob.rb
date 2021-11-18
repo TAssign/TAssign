@@ -21,7 +21,7 @@ module Glob
     bin = '/usr/local/bin'
     @@dirs = {
       "tass_sf" => Sysfile.new(bin + '/tassign/'),
-      "users_sf" => Sysfile.new(bin + '/tassign/users.json'),
+      "studs_sf" => Sysfile.new(bin + '/tassign/studs.json'),
       "years_sf" => Sysfile.new(bin + '/tassign/years/')
     }
 
@@ -30,7 +30,7 @@ module Glob
     end
   
     def users
-      @@dirs["tass_sf"]
+      @@dirs["studs_sf"]
     end
 
     def years
@@ -66,11 +66,11 @@ module Glob
     {
       "help" => "\tGet information about TAssign commands",
       "quit" => "\tQuit the program",
-      "users" => "\tList existing users",
-      "user" => "\tSelect or create a user\n"\
+      "studs" => "\tList existing students",
+      "stud" => "\tSelect or create a student\n"\
                 "\tOptions:\n"\
-                "\t\t-n : user -n newuser\n"\
-                "\t\t\tCreates a new user with username newuser",
+                "\t\t-n : stud -n <username>\n"\
+                "\t\t\tCreates a new student with the username username",
       "clear" => "\tClear the terminal"
     }
   end
