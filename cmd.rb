@@ -1,5 +1,6 @@
 require 'colorize'
 require_relative 'glob.rb'
+require_relative 'lib/student.rb'
 
 include Glob
 include Glob::FileHandler
@@ -45,7 +46,8 @@ class Cmd
       
       if options[0] == "-n"
           if options[1] != nil
-            Glob::FileHandler.write(Glob::FileHandler.dirs["studs_sf"], options[1])
+            ns = Student.new(options[1])
+            Glob::FileHandler.write(Glob::FileHandler.dirs["studs_sf"], ns.jsonify)
           else
             puts "No username entered.\nFollow 'user -n <username>'\n"
           end
