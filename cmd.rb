@@ -7,9 +7,12 @@ include Glob
 include Glob::FileHandler
 
 
+# Handles all TAssign commands which are represented in classes
+# Each Command has a static @call method that calls the command
 class Cmd
 
   class Help
+    # Print all commands and their descriptions
     def self.call
       Glob::cmds.each do |key, value|
         puts "\n#{key}".colorize(:light_white)
@@ -19,12 +22,14 @@ class Cmd
     end
   end
 
+  # Clear the console
   class Clear
     def self.call
       puts "\e[H\e[2J"
     end
   end
 
+  # List all existing students
   class Studs
     def self.call(options=["studs"])
       options.shift()
@@ -37,11 +42,8 @@ class Cmd
     end
   end
 
+  # Log in, create a new user, configure users, etc.
   class Stud
-    def check_exists(stud)
-
-    end
-
     def self.call(options=["stud"])
       options.shift()
       
@@ -49,8 +51,8 @@ class Cmd
           if options[1] != nil
             ns = Student.new(options[1])
             ns_hash = ns.hash
-            Glob::FileHandler.write(Glob::FileHandler.dirs["studs_sf"] + options[1] + ".json", ns_hash)
-            puts(ns.deserialize(File.read(Glob::FileHandler.dirs["studs_sf"] + options[1] + ".json")))
+            Glob::FileHandler.write(ns.file, ns_hash)
+            puts(ns.deserialize(File.read(ns.file)))
           else
             puts "No username entered.\nFollow 'user -n <username>'\n"
           end

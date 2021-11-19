@@ -5,7 +5,7 @@ require_relative 'cmd.rb'
 include Glob
 
 begin
-  Glob::dirs.each do |key, value|
+  Glob::wdir.each do |key, value|
     unless Dir.exist?(value) or value[-1] != '/'
       FileUtils.mkdir_p(value)
     end

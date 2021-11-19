@@ -3,22 +3,22 @@ module Glob
     require 'json'
 
     bin = '/usr/local/bin'
-    @@dirs = {
+    @@wdir = {
       "tass_sf" => bin + '/tassign/',
       "studs_sf" => bin + '/tassign/studs/',
       "years_sf" => bin + '/tassign/years/'
     }
 
-    def dirs
-      @@dirs
+    def wdir
+      @@wdir
     end
   
     def users
-      @@dirs["studs_sf"]
+      @@wdir["studs_sf"]
     end
 
     def years
-      @@dirs["years_sf"]
+      @@wdir["years_sf"]
     end
 
     def read(file)
