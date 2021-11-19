@@ -16,7 +16,7 @@ class Cmd
     def self.call
       Glob::cmds.each do |key, value|
         puts "\n#{key}".colorize(:light_white)
-        puts "#{value}".colorize(:green)
+        puts "#{value}"
       end
       puts ""
     end
@@ -26,19 +26,6 @@ class Cmd
   class Clear
     def self.call
       puts "\e[H\e[2J"
-    end
-  end
-
-  # List all existing students
-  class Studs
-    def self.call(options=["studs"])
-      options.shift()
-
-      if options[0] == "-v"
-        puts "Verbose studs output"
-      elsif options[0] == nil
-        puts "Printing all studs"
-      end
     end
   end
 
@@ -52,10 +39,14 @@ class Cmd
             ns = Student.new(username=options[1])
             ns_hash = ns.hash
             Glob::FileHandler.write(ns.file, ns_hash)
-           # puts "Success.\nUser '" + ns.username + "' created."
+            puts "Success.\nUser '" + ns.username + "' created."
           else
             puts "No username entered.\nFollow 'user -n <username>'\n"
           end
+      elsif options[0] == "-a"
+        puts Student.all
+      elsif options[0] == "-av" or options[0] == "-va"
+        puts "Student.all WITH VERBOSITY"
       else
         puts "Invalid options. Please see 'help stud' for more information."
       end

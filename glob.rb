@@ -1,5 +1,6 @@
 # Global methods and variables
 module Glob
+  require 'colorize'
 
   # Methods and variables pertaining to file io
   module FileHandler
@@ -62,11 +63,12 @@ module Glob
     {
       "help" => "\tGet information about TAssign commands",
       "quit" => "\tQuit the program",
-      "studs" => "\tList existing students",
       "stud" => "\tSelect or create a student\n"\
                 "\tOptions:\n"\
-                "\t\t-n : stud -n <username>\n"\
-                "\t\t\tCreates a new student with the username username",
+                "\t\t-n".colorize(:light_white) + " : stud -n <username>\n"\
+                "\t\t\tCreates a new student with the username username\n"\
+                "\t\t-a[v] : stud -a[v]\n"\
+                "\t\t\tPrint all existing users.\n\t\t\tUse -av for verbosity.",
       "clear" => "\tClear the terminal"
     }
   end

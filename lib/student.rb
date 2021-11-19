@@ -24,11 +24,9 @@ class Student < JSONify
     studs = ""
     Dir.foreach(Glob::FileHandler.users) do |name|
       unless name=='.' or name=='..'
-        studs += name[0,name.length-5] + "\n"
+        studs += name[0,name.length-5] + "\t"
       end
     end
     studs
   end
 end
-
-puts Student.all
