@@ -49,10 +49,10 @@ class Cmd
       
       if options[0] == "-n"
           if options[1] != nil
-            ns = Student.new(options[1])
+            ns = Student.new(username=options[1])
             ns_hash = ns.hash
             Glob::FileHandler.write(ns.file, ns_hash)
-            puts(ns.deserialize(File.read(ns.file)))
+           # puts "Success.\nUser '" + ns.username + "' created."
           else
             puts "No username entered.\nFollow 'user -n <username>'\n"
           end

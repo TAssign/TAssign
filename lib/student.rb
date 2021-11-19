@@ -6,7 +6,7 @@ include Glob::FileHandler
 class Student < JSONify
   attr_accessor :username, :name, :email
 
-  def initialize(usenrame, name="", email="")
+  def initialize(username, name="", email="")
     @username = username
     @name = name
     @email = email
