@@ -1,26 +1,36 @@
+# Global methods and variables
 module Glob
+
+  # Methods and variables pertaining to file io
   module FileHandler
     require 'json'
 
     bin = '/usr/local/bin'
+    # File locations
     @@wdir = {
       "tass_sf" => bin + '/tassign/',
       "studs_sf" => bin + '/tassign/studs/',
       "years_sf" => bin + '/tassign/years/'
     }
 
+    # TAssign working directory
     def wdir
       @@wdir
     end
   
+    # Directory for all users
     def users
       @@wdir["studs_sf"]
     end
 
+    #Directory for all years
     def years
       @@wdir["years_sf"]
     end
 
+    # Read json file to hash
+    # @param [String] the file location to read to hash
+    # @return [Hash] the hashed json data or [false] if unable to find file
     def read(file)
       if File.exists?(file)
         in_file = File.read(file)
@@ -31,6 +41,9 @@ module Glob
       end
     end
 
+    # Write to json
+    # @param [String] the file location to write to
+    # @param [Hash] the data to jsonify
     def write(file, data)
       if File.exists?(file)
         out_file = File.open(file, "w+")
@@ -44,6 +57,7 @@ module Glob
 
   end
 
+  # Get command documentation
   def cmds
     {
       "help" => "\tGet information about TAssign commands",
