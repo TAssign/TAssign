@@ -7,5 +7,4 @@ class Student < JSONify
     @name = name
     @email = email
   end
-
 end

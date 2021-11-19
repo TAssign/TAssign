@@ -6,8 +6,8 @@ include Glob
 
 begin
   Glob::dirs.each do |key, value|
-    unless Dir.exist?(value.name) or value.name[-1] != '/'
-      FileUtils.mkdir_p(value.name)
+    unless Dir.exist?(value) or value[-1] != '/'
+      FileUtils.mkdir_p(value)
     end
   end
 rescue Errno::ENOENT

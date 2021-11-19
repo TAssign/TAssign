@@ -2,27 +2,11 @@ module Glob
   module FileHandler
     require 'json'
 
-    class Sysfile
-      def initialize(name)
-        @name = name
-      end
-
-      def name
-        return @name
-      end
-
-      def self.sysfile_status(obj)
-        if not obj.is_a?(Sysfile)
-          raise "ArgumentError: Sysfile required"
-        end
-      end
-    end
-    
     bin = '/usr/local/bin'
     @@dirs = {
-      "tass_sf" => Sysfile.new(bin + '/tassign/'),
-      "studs_sf" => Sysfile.new(bin + '/tassign/studs.json'),
-      "years_sf" => Sysfile.new(bin + '/tassign/years/')
+      "tass_sf" => bin + '/tassign/',
+      "studs_sf" => bin + '/tassign/studs/',
+      "years_sf" => bin + '/tassign/years/'
     }
 
     def dirs
@@ -38,9 +22,8 @@ module Glob
     end
 
     def read(file)
-      Sysfile.sysfile_status(file)
-      if File.exists?(file.name)
-        in_file = File.read(file.name)
+      if File.exists?(file)
+        in_file = File.read(file)
         data = JSON.parse(in_file)
         return data
       else
@@ -49,13 +32,12 @@ module Glob
     end
 
     def write(file, data)
-      Sysfile.sysfile_status(file)
-      if File.exists?(file.name)
-        out_file = File.open(file.name, "w+")
+      if File.exists?(file)
+        out_file = File.open(file, "w+")
         out_file.write(JSON.pretty_generate(data))
         out_file.close
       else
-        File.new(file.name, "w+")
+        File.new(file, "w+")
         write(file, data)
       end
     end
