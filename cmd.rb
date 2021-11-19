@@ -16,7 +16,7 @@ class Cmd
     def self.call
       Glob::cmds.each do |key, value|
         puts "\n#{key}".colorize(:light_white)
-        puts "#{value}"
+        puts "#{value}".colorize(:green)
       end
       puts ""
     end
@@ -50,6 +50,17 @@ class Cmd
       else
         puts "Invalid options. Please see 'help stud' for more information."
       end
+    end
+
+    def self.docs
+      {
+        "stud" => "\tSelect or create a student\n"\
+                  "\tOptions:\n"\
+                  "\t\t-n".colorize(:light_white) + " : stud -n <username>\n"\
+                  "\t\t\tCreates a new student with the username username\n"\
+                  "\t\t-a[v] : stud -a[v]\n"\
+                  "\t\t\tPrint all existing users.\n\t\t\tUse -av for verbosity."
+      }
     end
   end
 end
