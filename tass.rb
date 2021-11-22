@@ -47,6 +47,12 @@ welcome = Array[
 ]
 prompt = "$ "
 
+if Glob::FileHandler.read(Glob::wdir['config'])['start_msg']
+  startup = ["\n\nTo get started. Read the README at https://www.github.com/anseljohn/TAssign.",
+             "Or type " + "help".colorize(:light_white) + " to explore commands.".colorize(:green),
+             "\nTip: You can stop this message from printing when starting up by entering " + "config startup -off".colorize(:light_white) + "\n\n"]
+  welcome.concat(startup)
+end
 
 Cmd::Clear.call
 sleep(0.1)
@@ -55,11 +61,6 @@ for msg in welcome
   sleep(0.01)
 end
 
-if Glob::FileHandler.read(Glob::wdir['config'])['start_msg']
-  puts "\n\nTo get started. Read the README at https://www.github.com/anseljohn/TAssign."
-  puts "Or type " + "help".colorize(:light_white) + " to explore commands.".colorize(:green)
-  puts "\nTip: You can stop this message from printing when starting up by entering " + "config startup -off".colorize(:light_white) + "\n\n"
-end
 
 while true
   print prompt
@@ -78,6 +79,9 @@ while true
 
     when "clear"
       Cmd::Clear.call
+
+    when "config"
+      Cmd::Config.call(cmds)
 
     when "stud"
       Cmd::Stud.call(cmds)

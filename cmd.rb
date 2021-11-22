@@ -35,12 +35,16 @@ class Cmd
 
       case options[0]
       when "startup"
-        on_off = options[1] == '-on' ? true : false
         case options[1]
-        when '-off' || '-on'
+        when '-off'
           config_file = Glob::wdir['config']
           config_data = Glob::FileHandler.read(config_file)
-          config_data['start_msg'] = on_off
+          config_data['start_msg'] = false
+          Glob::FileHandler.write(config_file, config_data)
+        when '-on'
+          config_file = Glob::wdir['config']
+          config_data = Glob::FileHandler.read(config_file)
+          config_data['start_msg'] = true
           Glob::FileHandler.write(config_file, config_data)
         else
           puts "Invalid options for startup config modification"
