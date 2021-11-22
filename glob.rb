@@ -61,15 +61,15 @@ module Glob
   # Get command documentation
   def cmds
     {
-      "help" => "\tGet information about TAssign commands",
-      "quit" => "\tQuit the program",
-      "clear" => "\tClear the terminal",
-      "stud" => "\tSelect or create a student\n"\
+      "help".colorize(:light_white) => "\tGet information about TAssign commands",
+      "quit".colorize(:light_white) => "\tQuit the program",
+      "clear".colorize(:light_white) => "\tClear the terminal",
+      "stud".colorize(:light_white) => "\tSelect or create a student\n"\
                 "\tOptions:\n"\
-                "\t\t-n".colorize(:light_white) + " : stud -n <username>\n"\
+                "\t\t-n".colorize(:light_white) + " : " + "stud -n <username>\n".colorize(:light_white)\
                 "\t\t\tCreates a new student with the username username\n"\
-                "\t\t-a[v] : stud -a[v]\n"\
-                "\t\t\tPrint all existing users.\n\t\t\tUse -av for verbosity."
+                "\t\t-a[v]".colorize(:light_white) + " : " + "stud -a[v]\n".colorize(:light_white)\
+                "\t\t\tPrint all existing users.\n\t\t\tUse " + "-av".colorize(:light_white) + " for verbosity."
  
     }
   end

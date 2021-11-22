@@ -15,11 +15,13 @@ class Cmd
     # Print all commands and their descriptions
     def self.call
       Glob::cmds.each do |key, value|
-        puts "\n#{key}".colorize(:light_white)
-        puts "#{value}".colorize(:green)
+        puts "\n#{key}"
+        puts "#{value}"
       end
       puts ""
     end
+
+    def self.options {} end
   end
 
   # Clear the console
@@ -27,6 +29,8 @@ class Cmd
     def self.call
       puts "\e[H\e[2J"
     end
+
+    def self.options {} end
   end
 
   # Log in, create a new user, configure users, etc.
@@ -52,4 +56,6 @@ class Cmd
       end
     end
   end
+
+  def self.options {} end
 end
