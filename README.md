@@ -17,7 +17,7 @@ TAssign is a text-based school planner for students who like to code. It's based
 - Use `user -n username` to create a new user.
 - (Optional) Use `user --config email "john.doe@abc.com"` to configure your email.
 - (Optional) Use `user --config pass "password123"` to configure a password.
-- Once your user is configured, you should be immediately logged in.
+- Once your user is configued, you should be immediately logged in.
 
 
 ## Basics
