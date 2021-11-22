@@ -64,9 +64,13 @@ module Glob
     {
       "help".colorize(:light_white) => "\tGet information about TAssign commands",
       "quit".colorize(:light_white) => "\tQuit the program",
+      "config".colorize(:light_white) => "\tConfigure TAssign options.\n"\
+                      "\tOptions:\n".colorize(:green)+""\
+                      "\t\tstartup -on[off]".colorize(:light_white) + " : " + "config startup -off".colorize(:light_white)+"\n"\
+                      "\t\t\tTurn off the startup tip for getting started.".colorize(:green)+"",
       "clear".colorize(:light_white) => "\tClear the terminal",
       "stud".colorize(:light_white) => "\tSelect or create a student\n".colorize(:green)+""\
-      "\tOptions:\n".colorize(:green)+""\
+                      "\tOptions:\n".colorize(:green)+""\
                       "\t\t-n".colorize(:light_white) + " : " + "stud -n <username>\n".colorize(:light_white)+""\
                       "\t\t\tCreates a new student with the username username\n".colorize(:green)+""\
                       "\t\t-a[v]".colorize(:light_white) + " : " + "stud -a[v]\n".colorize(:light_white)+""\

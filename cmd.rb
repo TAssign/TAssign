@@ -29,6 +29,28 @@ class Cmd
     end
   end
 
+  class Config
+    def self.call(options=["config"])
+      options.shift()
+
+      case options[0]
+      when "startup"
+        on_off = options[1] == '-on' ? true : false
+        case options[1]
+        when '-off' || '-on'
+          config_file = Glob::wdir['config']
+          config_data = Glob::FileHandler.read(config_file)
+          config_data['start_msg'] = on_off
+          Glob::FileHandler.write(config_file, config_data)
+        else
+          puts "Invalid options for startup config modification"
+        end
+      else
+        puts "Invalid config modifications"
+      end
+    end
+  end
+  
   # Log in, create a new user, configure users, etc.
   class Stud
     def self.call(options=["stud"])
