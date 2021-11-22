@@ -69,7 +69,7 @@ module Glob
                       "\t\t-n".colorize(:light_white) + " : " + "stud -n <username>\n".colorize(:light_white)+""\
                       "\t\t\tCreates a new student with the username username\n".colorize(:green)+""\
                       "\t\t-a[v]".colorize(:light_white) + " : " + "stud -a[v]\n".colorize(:light_white)+""\
-                      "\t\t\tPrint all existing users.\n\t\t\tUse " + "-av".colorize(:light_white) + " for verbosity."
+                      "\t\t\tPrint all existing users.\n\t\t\tUse ".colorize(:green) + "-av".colorize(:light_white) + " for verbosity.".colorize(:green)+""
      
     }
   end
