@@ -28,6 +28,7 @@ if ! test -d $t_src; then
     touch $env
     echo "source $t_src/call.sh" >> $env
     chmod 775 $t_src/call.sh
+    $SHELL
 else
     echo "TAssign already installed."
 fi
