@@ -9,7 +9,7 @@ TAssign is a text-based school planner for students who like to code. It's based
 `sudo chmod +x install.sh`
 ### 3. Execute the installation file
 `./install.sh`
-### 4. Run `tassign`
+### 4. Run it!
 `tassign`
 ### Work hard!
 
