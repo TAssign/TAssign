@@ -26,3 +26,4 @@ School years are either in whole or two semesters.
 ## Future Functionality
 - Phone user configuration for mobile notifications
 - Remote sync and update
+- Google calendar sync for recommended assignment/study time slots
