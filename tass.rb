@@ -1,4 +1,6 @@
 require 'fileutils'
+require 'colorize'
+require 'json'
 require_relative 'glob.rb'
 require_relative 'cmd.rb'
 
@@ -8,6 +10,11 @@ begin
   Glob::wdir.each do |key, value|
     unless Dir.exist?(value) or value[-1] != '/'
       FileUtils.mkdir_p(value)
+    end
+    if File.zero?(Glob::wdir['config'])
+      configf = Glob::wdir['config']
+      dosm = { "start_msg" => true }
+      Glob::FileHandler.write(configf, dosm)
     end
   end
 rescue Errno::ENOENT
@@ -36,7 +43,7 @@ welcome = Array[
   " |[][][][][][][][][]|    |  \..  |",
   " \\------------------/    | ( # ) |",
   "                         |  '''  |",
-  "                         \\_______/"
+  "                         \\_______/\n"
 ]
 prompt = "$ "
 
@@ -48,6 +55,11 @@ for msg in welcome
   sleep(0.01)
 end
 
+if Glob::FileHandler.read(Glob::wdir['config'])['start_msg']
+  puts "\n\nTo get started. Read the README at https://www.github.com/anseljohn/TAssign."
+  puts "Or type " + "help".colorize(:light_white) + " to explore commands.".colorize(:green)
+  puts "\nTip: You can stop this message from printing when starting up by entering " + "config startup -off".colorize(:light_white) + "\n\n"
+end
 
 while true
   print prompt

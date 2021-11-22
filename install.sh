@@ -1,9 +1,10 @@
 #/bin/bash
-
-t_src=/usr/local/bin/tassign/src
+t_=/usr/local/bin/tassign/
+t_src=/usr/local/bin/tassign/src/
 
 if ! test -d $t_src; then
     mkdir -p $t_src
+    touch $t_/config.json
     cp -r * $t_src
 
     alias tassign='ruby /usr/local/bin/tassign/src/tassign.rb'
@@ -31,4 +32,5 @@ if ! test -d $t_src; then
     $SHELL
 else
     echo "TAssign already installed."
+    cp -r * $t_src
 fi

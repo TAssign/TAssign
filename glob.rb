@@ -11,7 +11,8 @@ module Glob
     @@wdir = {
       "tass_sf" => bin + '/tassign/',
       "studs_sf" => bin + '/tassign/studs/',
-      "years_sf" => bin + '/tassign/years/'
+      "years_sf" => bin + '/tassign/years/',
+      "config" => bin + '/tassign/config.json'
     }
 
     # TAssign working directory
