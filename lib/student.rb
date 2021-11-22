@@ -22,9 +22,14 @@ class Student < JSONify
   # @return [String] the existing students
   def self.all
     studs = ""
-    Dir.foreach(Glob::FileHandler.users) do |name|
-      unless name=='.' or name=='..'
-        studs += name[0,name.length-5] + "\t"
+
+    if Dir.empty?(Glob::FileHandler.users)
+      studs = "No user exist yet. Please use " + "stud -n <username>".colorize(:light_white) + " to create a new user.".colorize(:green)
+    else
+      Dir.foreach(Glob::FileHandler.users) do |name|
+        unless name=='.' or name=='..'
+          studs += name[0,name.length-5] + "\t"
+        end
       end
     end
     studs
