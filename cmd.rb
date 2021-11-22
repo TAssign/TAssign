@@ -15,11 +15,13 @@ class Cmd
     # Print all commands and their descriptions
     def self.call
       Glob::cmds.each do |key, value|
-        puts "\n#{key}".colorize(:light_white)
-        puts "#{value}".colorize(:green)
+        puts "\n#{key}"
+        puts "#{value}"
       end
       puts ""
     end
+
+    def self.options {} end
   end
 
   # Clear the console
@@ -27,6 +29,8 @@ class Cmd
     def self.call
       puts "\e[H\e[2J"
     end
+
+    def self.options {} end
   end
 
   # Log in, create a new user, configure users, etc.
@@ -51,16 +55,7 @@ class Cmd
         puts "Invalid options. Please see 'help stud' for more information."
       end
     end
-
-    def self.docs
-      {
-        "stud" => "\tSelect or create a student\n"\
-                  "\tOptions:\n"\
-                  "\t\t-n".colorize(:light_white) + " : stud -n <username>\n"\
-                  "\t\t\tCreates a new student with the username username\n"\
-                  "\t\t-a[v] : stud -a[v]\n"\
-                  "\t\t\tPrint all existing users.\n\t\t\tUse -av for verbosity."
-      }
-    end
   end
+
+  def self.options {} end
 end
