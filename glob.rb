@@ -1,17 +1,12 @@
 # Global methods and variables
 module Glob
-  require 'colorize'
-
+  require "colorize"
   #
   # Colorize functions for easier colorizing
   #
 
   def Glob.white(str)
     str.colorize(:light_white)
-  end
-
-  def Glob.green(str)
-    str.colorize(:green)
   end
 
   # Methods and variables pertaining to file io
@@ -77,16 +72,16 @@ module Glob
       Glob.white("help") => "\tGet information about TAssign commands",
       Glob.white("quit") => "\tQuit the program",
       Glob.white("config") => "\tConfigure TAssign options.\n"\
-                              ""+Glob.green("\tOptions:\n")+""\
+                              "\tOptions:\n"\
                               ""+Glob.white("\t\tstartup on[off]") + " : " + Glob.white("config startup off")+"\n"\
-                              ""+Glob.green("\t\t\tTurn off the startup tip for getting started.")+"",
+                              "\t\t\tTurn off the startup tip for getting started.",
       Glob.white("clear") => "\tClear the terminal",
-      Glob.white("stud") => "\tSelect or create a student\n".colorize(:green)+""\
-                            ""+Glob.green("\tOptions:\n")+""\
+      Glob.white("stud") => "\tSelect or create a student\n"\
+                            "\tOptions:\n"\
                             ""+Glob.white("\t\t-n") + " : " + Glob.white("stud -n <username>\n")+""\
-                            ""+Glob.green("\t\t\tCreates a new student with the username username\n")+""\
+                            "\t\t\tCreates a new student with the username username\n"\
                             ""+Glob.white("\t\t-a[v]") + " : " + Glob.white("stud -a[v]\n")+""\
-                            ""+Glob.green("\t\t\tPrint all existing users.\n\t\t\tUse ") + Glob.white("-av") + Glob.green(" for verbosity.")+""
+                            "\t\t\tPrint all existing users.\n\t\t\tUse " + Glob.white("-av") + " for verbosity."
      
     }
   end
