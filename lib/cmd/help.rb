@@ -10,18 +10,13 @@ class Help
     put_first = [Help, Clear, Quit]
     put_first.each { |cls|
       doc cls
-      puts ""
     }
     
     Dir.foreach("lib/cmd/") do |file|
       if file != "." and file != ".."
         cls = Object.const_get(File.basename(file, ".rb").capitalize)
         if not put_first.include? cls
-          puts cls.name + "\t" + cls.desc
-          if cls.methods.include? :options
-            puts cls.options
-          end
-          puts ""
+          doc cls
         end
       end
     end
@@ -33,15 +28,15 @@ class Help
   end
 
   def self.desc
-    "Get information about TAssign commands."
+    "Get information about TAssign commands"
   end
 
   private
   def self.doc(cls)
-    puts cls.name "\t" + cls.desc
+    puts ""
+    puts cls.name + "\n\t" + cls.desc
     if cls.methods.include? :options
       puts cls.options
     end
-    puts""
   end
 end

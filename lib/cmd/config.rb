@@ -49,7 +49,7 @@ class Config
   end
 
   def self.desc
-    "Configure TAssign options."
+    "Configure TAssign options"
   end
 
   def self.options

@@ -4,6 +4,6 @@ class Quit
   end
 
   def self.desc
-    "Exit TAssign."
+    "Exit TAssign"
   end
 end
