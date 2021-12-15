@@ -20,4 +20,24 @@ class Stud
       puts "Invalid options. Please see 'help stud' for more information."
     end
   end
+
+  def self.name
+    "stud"
+  end
+
+  def self.desc
+    "Select or create a student"
+  end
+
+  def self.options
+    "\tOptions:\n"\
+    ""+Glob.white("\t\t-n") + " : " + Glob.white("stud -n <username>\n")+""\
+    "\t\t\tCreates a new student with the username username\n"\
+    ""+Glob.white("\t\t-a[v]") + " : " + Glob.white("stud -a[v]\n")+""\
+    "\t\t\tPrint all existing users.\n\t\t\tUse " + Glob.white("-av") + " for verbosity."
+  end
 end
+
+puts Stud.name
+puts Stud.desc
+puts Stud.options
