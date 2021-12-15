@@ -3,6 +3,7 @@ require 'colorize'
 require 'json'
 require_relative 'glob.rb'
 require_relative 'cmd.rb'
+Dir["lib/cmd/*.rb"].each {|file| require_relative file}
 
 include Glob
 
@@ -84,7 +85,7 @@ while true
       Cmd::Config.call(cmds)
 
     when "stud"
-      Cmd::Stud.call(cmds)
+      Stud.call(cmds)
 
     else
       puts "Command '" + cmd + "' does not exist.\nUser 'help' for more info."
