@@ -72,7 +72,7 @@ while true
     when "help"
       Help.call
 
-    when "quit"
+    when "quit", "exit"
       puts "Goodbye."
       break
 

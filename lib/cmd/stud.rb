@@ -38,6 +38,3 @@ class Stud
   end
 end
 
-puts Stud.name
-puts Stud.desc
-puts Stud.options

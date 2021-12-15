@@ -10,8 +10,4 @@ class Clear
   def self.desc
     "Clear the terminal"
   end
-
-  def self.options
-    nil
-  end
 end

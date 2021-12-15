@@ -43,4 +43,19 @@ class Config
       puts "Invalid config modifications"
     end
   end
+
+  def self.name
+    "config"
+  end
+
+  def self.desc
+    "Configure TAssign options."
+  end
+
+  def self.options
+      "\tOptions:\n"\
+      ""+Glob.white("\t\tstartup on[off]") + " : " + Glob.white("config startup off")+"\n"\
+      "\t\t\tTurn off the startup tip for getting started."
+  end
 end
+
