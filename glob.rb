@@ -2,6 +2,18 @@
 module Glob
   require 'colorize'
 
+  #
+  # Colorize functions for easier colorizing
+  #
+
+  def Glob.white(str)
+    str.colorize(:light_white)
+  end
+
+  def Glob.green(str)
+    str.colorize(:green)
+  end
+
   # Methods and variables pertaining to file io
   module FileHandler
     require 'json'
