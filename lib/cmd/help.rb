@@ -5,7 +5,6 @@ Dir.foreach("lib/cmd/") do |file|
 end
 
 class Help
-  # Print all commands and their descriptions
   def self.call
     put_first = [Help, Clear, Quit]
     put_first.each { |cls|
