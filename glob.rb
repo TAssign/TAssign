@@ -82,11 +82,11 @@ module Glob
                               ""+Glob.green("\t\t\tTurn off the startup tip for getting started.")+"",
       Glob.white("clear") => "\tClear the terminal",
       Glob.white("stud") => "\tSelect or create a student\n".colorize(:green)+""\
-                      "\tOptions:\n".colorize(:green)+""\
-                      "\t\t-n".colorize(:light_white) + " : " + "stud -n <username>\n".colorize(:light_white)+""\
-                      "\t\t\tCreates a new student with the username username\n".colorize(:green)+""\
-                      "\t\t-a[v]".colorize(:light_white) + " : " + "stud -a[v]\n".colorize(:light_white)+""\
-                      "\t\t\tPrint all existing users.\n\t\t\tUse ".colorize(:green) + "-av".colorize(:light_white) + " for verbosity.".colorize(:green)+""
+                            ""+Glob.green("\tOptions:\n")+""\
+                            ""+Glob.white("\t\t-n") + " : " + Glob.white("stud -n <username>\n")+""\
+                            ""+Glob.green("\t\t\tCreates a new student with the username username\n")+""\
+                            ""+Glob.white("\t\t-a[v]") + " : " + Glob.white("stud -a[v]\n")+""\
+                            ""+Glob.green("\t\t\tPrint all existing users.\n\t\t\tUse ") + Glob.white("-av") + Glob.green(" for verbosity.")+""
      
     }
   end
