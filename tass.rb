@@ -50,7 +50,7 @@ prompt = "$ "
 if Glob::FileHandler.read(Glob::wdir['config'])['start_msg']
   startup = ["\n\nTo get started. Read the README at https://github.com/TAssign/TAssign/blob/master/README.md",
              "Or type " + "help".colorize(:light_white) + " to explore commands.".colorize(:green),
-             "\nTip: You can stop this message from printing when starting up by entering " + "config startup -off".colorize(:light_white) + "\n\n"]
+             "\nTip: You can stop this message from printing when starting up by entering " + "config startup off".colorize(:light_white) + "\n\n"]
   welcome.concat(startup)
 end
 
