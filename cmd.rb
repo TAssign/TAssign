@@ -48,6 +48,7 @@ class Cmd
           Glob::FileHandler.write(config_file, config_data)
         else
           puts "Invalid options for startup config modification"
+          puts "Use ".colorize(:green) + " config startup -on/off".colorize(:light_white)
         end
       else
         puts "Invalid config modifications"

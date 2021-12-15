@@ -32,5 +32,6 @@ if ! test -d $t_src; then
     $SHELL
 else
     echo "TAssign already installed."
+    echo "Parsing for holes..."
     cp -r * $t_src
 fi
