@@ -2,7 +2,7 @@ require 'fileutils'
 require 'colorize'
 require 'json'
 require_relative 'glob.rb'
-require_relative 'cmd.rb'
+Dir["lib/cmd/*.rb"].each {|file| require_relative file}
 
 include Glob
 
@@ -54,7 +54,7 @@ if Glob::FileHandler.read(Glob::wdir['config'])['start_msg']
   welcome.concat(startup)
 end
 
-Cmd::Clear.call
+Clear.call
 sleep(0.1)
 for msg in welcome
   puts "\t" + msg
@@ -71,20 +71,20 @@ while true
 
     case cmds[0]
     when "help"
-      Cmd::Help.call
+      Help.call
 
     when "quit"
       puts "Goodbye."
       break
 
     when "clear"
-      Cmd::Clear.call
+      Clear.call
 
     when "config"
-      Cmd::Config.call(cmds)
+      Config.call(cmds)
 
     when "stud"
-      Cmd::Stud.call(cmds)
+      Stud.call(cmds)
 
     else
       puts "Command '" + cmd + "' does not exist.\nUser 'help' for more info."
