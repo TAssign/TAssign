@@ -9,7 +9,7 @@ class Stud
           Glob::FileHandler.write(ns.file, ns_hash)
           puts "Success.\nUser '" + ns.username + "' created."
         else
-          puts "No username entered.\nFollow 'user -n <username>'\n"
+          puts "No username entered.\nFollow 'stud -n <username>'\n"
         end
     elsif options[0] == "-a"
       puts Student.all
