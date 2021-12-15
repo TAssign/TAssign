@@ -20,8 +20,6 @@ class Cmd
       end
       puts ""
     end
-
-    def self.options {} end
   end
 
   # Clear the console
@@ -29,8 +27,6 @@ class Cmd
     def self.call
       puts "\e[H\e[2J"
     end
-
-    def self.options {} end
   end
 
   # Log in, create a new user, configure users, etc.
@@ -56,6 +52,4 @@ class Cmd
       end
     end
   end
-
-  def self.options {} end
 end
