@@ -10,12 +10,12 @@ class Config
     case options[0]
     when "startup"
       case options[1]
-      when '-off'
+      when 'off'
         config_file = Glob::wdir['config']
         config_data = Glob::FileHandler.read(config_file)
         config_data['start_msg'] = false
         Glob::FileHandler.write(config_file, config_data)
-      when '-on'
+      when 'on'
         config_file = Glob::wdir['config']
         config_data = Glob::FileHandler.read(config_file)
         config_data['start_msg'] = true
