@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'colorize'
 require 'json'
 require_relative 'glob.rb'
 Dir["lib/cmd/*.rb"].each {|file| require_relative file}
@@ -48,9 +47,9 @@ welcome = Array[
 prompt = "$ "
 
 if Glob::FileHandler.read(Glob::wdir['config'])['start_msg']
-  startup = ["\n\nTo get started. Read the README at https://github.com/TAssign/TAssign/blob/master/README.md",
-             "Or type " + "help".colorize(:light_white) + " to explore commands.".colorize(:green),
-             "\nTip: You can stop this message from printing when starting up by entering " + "config startup off".colorize(:light_white) + "\n\n"]
+  startup = ["\n\nTo get started. Read the README at " + Glob.white("https://github.com/TAssign/TAssign/blob/master/README.md"),
+             "Or type " + Glob.white("help") + " to explore commands.",
+             "\nTip: You can stop this message from printing when starting up by entering " + Glob.white("config startup off") + "\n\n"]
   welcome.concat(startup)
 end
 

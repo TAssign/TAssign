@@ -1,6 +1,13 @@
 # Global methods and variables
 module Glob
-  require 'colorize'
+  require "colorize"
+  #
+  # Colorize functions for easier colorizing
+  #
+
+  def Glob.white(str)
+    str.colorize(:light_white)
+  end
 
   # Methods and variables pertaining to file io
   module FileHandler
@@ -62,19 +69,19 @@ module Glob
   # Get command documentation
   def cmds
     {
-      "help".colorize(:light_white) => "\tGet information about TAssign commands",
-      "quit".colorize(:light_white) => "\tQuit the program",
-      "config".colorize(:light_white) => "\tConfigure TAssign options.\n"\
-                      "\tOptions:\n".colorize(:green)+""\
-                      "\t\tstartup on[off]".colorize(:light_white) + " : " + "config startup off".colorize(:light_white)+"\n"\
-                      "\t\t\tTurn off the startup tip for getting started.".colorize(:green)+"",
-      "clear".colorize(:light_white) => "\tClear the terminal",
-      "stud".colorize(:light_white) => "\tSelect or create a student\n".colorize(:green)+""\
-                      "\tOptions:\n".colorize(:green)+""\
-                      "\t\t-n".colorize(:light_white) + " : " + "stud -n <username>\n".colorize(:light_white)+""\
-                      "\t\t\tCreates a new student with the username username\n".colorize(:green)+""\
-                      "\t\t-a[v]".colorize(:light_white) + " : " + "stud -a[v]\n".colorize(:light_white)+""\
-                      "\t\t\tPrint all existing users.\n\t\t\tUse ".colorize(:green) + "-av".colorize(:light_white) + " for verbosity.".colorize(:green)+""
+      Glob.white("help") => "\tGet information about TAssign commands",
+      Glob.white("quit") => "\tQuit the program",
+      Glob.white("config") => "\tConfigure TAssign options.\n"\
+                              "\tOptions:\n"\
+                              ""+Glob.white("\t\tstartup on[off]") + " : " + Glob.white("config startup off")+"\n"\
+                              "\t\t\tTurn off the startup tip for getting started.",
+      Glob.white("clear") => "\tClear the terminal",
+      Glob.white("stud") => "\tSelect or create a student\n"\
+                            "\tOptions:\n"\
+                            ""+Glob.white("\t\t-n") + " : " + Glob.white("stud -n <username>\n")+""\
+                            "\t\t\tCreates a new student with the username username\n"\
+                            ""+Glob.white("\t\t-a[v]") + " : " + Glob.white("stud -a[v]\n")+""\
+                            "\t\t\tPrint all existing users.\n\t\t\tUse " + Glob.white("-av") + " for verbosity."
      
     }
   end

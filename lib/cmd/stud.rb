@@ -1,3 +1,4 @@
+require_relative '../student.rb'
 class Stud
   def self.call(options=["stud"])
     options.shift
