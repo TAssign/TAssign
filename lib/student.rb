@@ -24,7 +24,7 @@ class Student < JSONify
     studs = ""
 
     if Dir.empty?(Glob::FileHandler.users)
-      studs = "No user exist yet. Please use " + "stud -n <username>".colorize(:light_white) + " to create a new user.".colorize(:green)
+      studs = "No user exist yet. Please use " + Glob.white("stud -n <username>") + " to create a new user."
     else
       Dir.foreach(Glob::FileHandler.users) do |name|
         unless name=='.' or name=='..'
