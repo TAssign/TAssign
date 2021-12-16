@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.4.4)
+    optparse (0.2.0)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -17,10 +18,12 @@ GEM
     rspec-support (3.10.3)
 
 PLATFORMS
+  universal-darwin-21
   x86_64-linux
 
 DEPENDENCIES
+  optparse
   rspec (~> 3.0)
 
 BUNDLED WITH
-   2.2.22
+   2.2.31
