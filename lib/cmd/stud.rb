@@ -40,7 +40,7 @@ class Stud
       all(options[0])
     elsif Student.all.include? options[0]
       puts "Successfully logged into " + Glob.white(options[0])
-      Glob.set_prompt("(" + Glob.white(options[0]) + ") $ ")
+      Glob::TassConfig.set_stud()
     else
       puts "Invalid options or user. Please see " + Glob.white("help stud") + " for more information"
       puts "or use " + Glob.white("stud -a") + " to view existing users."

@@ -61,7 +61,7 @@ end
 
 
 while true
-  print Glob.prompt
+  print Glob::TassConfig.prompt
   cmd = gets.chomp
   
   unless cmd.empty?

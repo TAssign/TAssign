@@ -3,6 +3,7 @@ GEM
   specs:
     diff-lcs (1.4.4)
     optparse (0.2.0)
+    ostruct (0.5.2)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -19,10 +20,12 @@ GEM
 
 PLATFORMS
   universal-darwin-21
+  x86_64-darwin-20
   x86_64-linux
 
 DEPENDENCIES
   optparse
+  ostruct
   rspec (~> 3.0)
 
 BUNDLED WITH

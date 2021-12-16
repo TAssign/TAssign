@@ -1,3 +1,4 @@
+require 'ostruct'
 require File.expand_path('../../util/JSONify.rb', __FILE__)
 require_relative '../glob.rb'
 
@@ -18,6 +19,11 @@ class Student < JSONify
     Glob::FileHandler.users + @username + ".json"
   end
 
+  def self.get_user(name)
+    puts(Glob::FileHandler.read(Glob::FileHandler.users + name + ".json"))
+    OpenStruct.new(Glob::FileHandler.read(Glob::FileHandler.users + name + ".json"))
+  end
+
   # Get all existing students
   # @return [String] the existing students
   def self.all
@@ -35,3 +41,4 @@ class Student < JSONify
   end
 
 end
+

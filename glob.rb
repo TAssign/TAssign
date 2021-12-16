@@ -11,15 +11,33 @@ module Glob
 
 
   #
-  # Prompt handling
+  # Tass Config
   #
-  @pr = "$ "
-  def Glob.prompt
-    @pr
-  end
+  class TassConfig
+    #
+    # Prompt configurations
+    #
+    @pr = "$ "
+    def self.prompt
+      @pr
+    end
 
-  def Glob.set_prompt(prmp)
-    @pr = prmp
+    def self.set_prompt(prmp)
+      @pr = prmp
+    end
+
+    #
+    # Student login configurations
+    #
+    @curr_stud = nil
+    def self.set_stud(stud)
+      @curr_stud = stud
+      set_prompt("(" + white(@curr_stud.username) + ") $ ")
+    end
+
+    def self.curr_stud
+      @curr_stud
+    end
   end
 
   # Methods and variables pertaining to file io
