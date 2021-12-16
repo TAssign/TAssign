@@ -22,16 +22,16 @@ class Student < JSONify
   # @return [String] the existing students
   def self.all
     studs = ""
-
+    all = []
     if Dir.empty?(Glob::FileHandler.users)
-      studs = "No user exist yet. Please use " + Glob.white("stud -n <username>") + " to create a new user."
     else
       Dir.foreach(Glob::FileHandler.users) do |name|
         unless name=='.' or name=='..'
-          studs += name[0,name.length-5] + "\t"
+          all.push(name[0,name.length-5])
         end
       end
     end
-    studs
+    all
   end
+
 end
