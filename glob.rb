@@ -9,6 +9,19 @@ module Glob
     str.colorize(:light_white)
   end
 
+
+  #
+  # Prompt handling
+  #
+  @pr = "$ "
+  def Glob.prompt
+    @pr
+  end
+
+  def Glob.setPrompt(prmp)
+    @pr = prmp
+  end
+
   # Methods and variables pertaining to file io
   module FileHandler
     require 'json'

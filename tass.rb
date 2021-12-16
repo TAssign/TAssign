@@ -44,7 +44,6 @@ welcome = Array[
   "                         |  '''  |",
   "                         \\_______/\n"
 ]
-prompt = "$ "
 
 if Glob::FileHandler.read(Glob::wdir['config'])['start_msg']
   startup = ["\n\nTo get started. Read the README at " + Glob.white("https://github.com/TAssign/TAssign/blob/master/README.md"),
@@ -62,7 +61,7 @@ end
 
 
 while true
-  print prompt
+  print Glob.prompt
   cmd = gets.chomp
   
   unless cmd.empty?
