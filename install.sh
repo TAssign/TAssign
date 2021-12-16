@@ -28,6 +28,7 @@ if ! test -d $t_src; then
     echo "source $t_src/call.sh" >> $env
     echo Changing file permissions for execution...
     chmod 775 $t_src/call.sh
+    "TAssign installed!"
     $SHELL
 else
     echo "TAssign already installed."
