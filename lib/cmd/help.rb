@@ -5,18 +5,14 @@ Dir.foreach("lib/cmd/") do |file|
 end
 
 class Help
-  def self.call
+  def self.call(opts)
     put_first = [Help, Clear, Quit]
     put_first.each { |cmd|
       doc cmd
     }
-    
-    Dir.foreach("lib/cmd/") do |file|
-      if file != "." and file != ".."
-        cmd = Object.const_get(File.basename(file, ".rb").capitalize)
-        if not put_first.include? cmd
-          doc cmd
-        end
+    all_cmds.each do |cmd|
+      if not put_first.include? cmd
+        doc cmd
       end
     end
     puts ""
@@ -37,5 +33,18 @@ class Help
     if cmd.methods.include? :options
       puts cmd.options
     end
+  end
+
+  def self.all_cmds
+    all = []
+
+    Dir.foreach("lib/cmd/") do |file|
+      if file != "." and file != ".."
+        cmd = Object.const_get(File.basename(file, ".rb").capitalize)
+        all.push(cmd)
+      end
+    end
+
+    all
   end
 end

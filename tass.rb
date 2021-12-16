@@ -66,11 +66,11 @@ while true
   cmd = gets.chomp
   
   unless cmd.empty?
-    cmds = cmd.split(' ')
+    opts = cmd.split(' ')
 
-    case cmds[0]
+    case opts[0]
     when "help"
-      Help.call
+      Help.call(opts)
 
     when "quit", "exit"
       puts "Goodbye."
@@ -80,10 +80,10 @@ while true
       Clear.call
 
     when "config"
-      Config.call(cmds)
+      Config.call(opts)
 
     when "stud"
-      Stud.call(cmds)
+      Stud.call(opts)
 
     else
       puts "Command '" + cmd + "' does not exist.\nUser 'help' for more info."

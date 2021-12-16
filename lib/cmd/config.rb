@@ -32,7 +32,7 @@ class Config
         msg += " on."
       else
         puts "Invalid options for startup config modification"
-        puts "Use ".colorize(:green) + " config startup -on/off".colorize(:light_whie)
+        puts "Use " + Glob.white(" config startup -on/off")
       end
       if prnt
         puts("Startup message turned" + msg)
@@ -40,7 +40,8 @@ class Config
         puts("Startup message already" + msg)
       end
     else
-      puts "Invalid config modifications"
+      puts "Invalid config modifications."
+      puts "Please use " + Glob.white("help config") + " for more information."
     end
   end
 
