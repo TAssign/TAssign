@@ -5,7 +5,7 @@ Dir.foreach("lib/cmd/") do |file|
 end
 
 class Help
-  def self.call(opts)
+  def self.call(opts=["help"])
     opts.shift()
 
     if opts.length == 0
