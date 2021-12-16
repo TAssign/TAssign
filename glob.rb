@@ -18,7 +18,7 @@ module Glob
     @pr
   end
 
-  def Glob.setPrompt(prmp)
+  def Glob.set_prompt(prmp)
     @pr = prmp
   end
 

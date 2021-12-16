@@ -1,12 +1,19 @@
 require_relative '../student.rb'
 class Stud
 
+  #
+  # ERRORS
+  #
+
   class Errors
     def InvalidStudAll
       "Invalid options for " + Glob.white("stud -a")
     end
   end
 
+  #
+  # CALL METHOD
+  # 
 
   def self.call(options=["stud"])
     options.shift
@@ -23,12 +30,17 @@ class Stud
     elsif options[0][0...2] == "-a"
       all(options[0])
     elsif Student.all.include? options[0]
-      puts "Log in to " + options[0]
+      puts "Successfully logged into " + Glob.white(options[0])
+      Glob.set_prompt("(" + Glob.white(options[0]) + ") $ ")
     else
       puts "Invalid options or user. Please see " + Glob.white("help stud") + " for more information"
       puts "or use " + Glob.white("stud -a") + " to view existing users."
     end
   end
+
+  #
+  # START DOC INFORMATION
+  #
 
   def self.name
     "stud"
@@ -45,6 +57,12 @@ class Stud
     ""+Glob.white("\t\t-a[v]") + " : " + Glob.white("stud -a[v]\n")+""\
     "\t\t\tPrint all existing users.\n\t\t\tUse " + Glob.white("-av") + " for verbosity."
   end
+
+  #
+  # END DOC INFORMATION
+  #
+  # START HELPER FUNCTIONS
+  #
 
   private
   def self.all(opts)
@@ -68,5 +86,9 @@ class Stud
       puts studs
     end
   end
+
+  #
+  # END HELPER FUNCTIONS
+  #
 end
 
