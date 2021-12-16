@@ -25,8 +25,8 @@ class Stud
     elsif Student.all.include? options[0]
       puts "Log in to " + options[0]
     else
-
-      puts "Invalid options. Please see 'help stud' for more information."
+      puts "Invalid options or user. Please see " + Glob.white("help stud") + " for more information"
+      puts "or use " + Glob.white("stud -a") + " to view existing users."
     end
   end
 
