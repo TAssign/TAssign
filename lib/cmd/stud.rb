@@ -6,8 +6,13 @@ class Stud
   #
 
   class Errors
-    def InvalidStudAll
+    def self.InvalidStudAll
       "Invalid options for " + Glob.white("stud -a")
+    end
+
+    def self.StudentExists(stud)
+      "Student " + Glob.white(stud) + " already exists.\n"\
+      + "Use " + Glob.white("stud " + stud) + " to log in."
     end
   end
 
@@ -20,10 +25,14 @@ class Stud
 
     if options[0] == "-n"
         if options[1] != nil
-          ns = Student.new(username=options[1])
-          ns_hash = ns.hash
-          Glob::FileHandler.write(ns.file, ns_hash)
-          puts "Success.\nUser '" + ns.username + "' created."
+          if not Student.all.include? options[1]
+            ns = Student.new(username=options[1])
+            ns_hash = ns.hash
+            Glob::FileHandler.write(ns.file, ns_hash)
+            puts "Success.\nUser '" + ns.username + "' created."
+          else
+            puts Errors.StudentExists(options[1])
+          end
         else
           puts "No username entered.\nFollow 'stud -n <username>'\n"
         end
