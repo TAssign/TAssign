@@ -7,15 +7,15 @@ end
 class Help
   def self.call
     put_first = [Help, Clear, Quit]
-    put_first.each { |cls|
-      doc cls
+    put_first.each { |cmd|
+      doc cmd
     }
     
     Dir.foreach("lib/cmd/") do |file|
       if file != "." and file != ".."
-        cls = Object.const_get(File.basename(file, ".rb").capitalize)
-        if not put_first.include? cls
-          doc cls
+        cmd = Object.const_get(File.basename(file, ".rb").capitalize)
+        if not put_first.include? cmd
+          doc cmd
         end
       end
     end
@@ -31,11 +31,11 @@ class Help
   end
 
   private
-  def self.doc(cls)
+  def self.doc(cmd)
     puts ""
-    puts cls.name + "\n\t" + cls.desc
-    if cls.methods.include? :options
-      puts cls.options
+    puts cmd.name + "\n\t" + cmd.desc
+    if cmd.methods.include? :options
+      puts cmd.options
     end
   end
 end
