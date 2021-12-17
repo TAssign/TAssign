@@ -27,7 +27,7 @@ class Help
         opt = "quit"
       end
       doc(classify(opt))
-      puts""
+      puts ""
     else
       puts "Command " + Glob.white(opts[0]) + " not found..."
     end
