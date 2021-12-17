@@ -33,6 +33,7 @@ module Glob
     def self.set_stud(stud)
       @curr_stud = stud
       set_prompt("(" + Glob.white(@curr_stud.username) + ") $ ")
+      puts "Successfully logged into " + Glob.white(@curr_stud.username)
     end
 
     def self.curr_stud
@@ -53,7 +54,7 @@ module Glob
     @@wdir = {
       "tass_sf" => bin + '/tassign/',
       "studs_sf" => bin + '/tassign/studs/',
-      "years_sf" => bin + '/tassign/years/',
+      "terms_sf" => bin + '/tassign/terms/',
       "config" => bin + '/tassign/config.json'
     }
 
