@@ -16,7 +16,7 @@ class Student < JSONify
   # Get the directory of the student's json file
   # @return [String] the json directory
   def file
-    Glob::FileHandler.users + @username + ".json"
+    Glob::FileHandler.users + @username + "/config.json"
   end
 
   def hashit
@@ -46,8 +46,7 @@ class Student < JSONify
   def self.all
     studs = ""
     all = []
-    if Dir.empty?(Glob::FileHandler.users)
-    else
+    if not Dir.empty?(Glob::FileHandler.users)
       Dir.foreach(Glob::FileHandler.users) do |name|
         unless name=='.' or name=='..'
           all.push(name[0,name.length-5])

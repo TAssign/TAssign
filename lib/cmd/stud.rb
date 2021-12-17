@@ -46,6 +46,7 @@ class Stud
           puts "No username entered.\nFollow 'stud -n <username>'\n"
         end
     elsif options[0][0...2] == "-d"
+      del(options)
     elsif options.length == 0
       if Glob::TassConfig.logged_in?
         puts "Current student: " + Glob.white(Glob::TassConfig.curr_stud.username)
@@ -78,7 +79,7 @@ class Stud
     "\tOptions:\n"\
     ""+Glob.white("\t\t-n") + " : " + Glob.white("stud -n <username>\n")+""\
     "\t\t\tCreates a new student with the username username\n"\
-    ""+Glob.white("\t\t-d[a]") + " : " + Glob.white("stud -d <username>") + " or " + Glob.white("stud -da\m")+""\
+    ""+Glob.white("\t\t-d[a]") + " : " + Glob.white("stud -d <username>") + " or " + Glob.white("stud -da\n")+""\
     "\t\t\tDelete all or one student\n"\
     ""+Glob.white("\t\t-a[v]") + " : " + Glob.white("stud -a[v]\n")+""\
     "\t\t\tPrint all existing users.\n\t\t\tUse " + Glob.white("-av") + " for verbosity."
@@ -146,8 +147,8 @@ class Stud
             Student.all.each do |stud|
               Student.remove(stud)
               puts "Student " + Glob.white(stud) + " removed."
-              break
             end
+            break
           elsif conf.downcase == "n"
             puts "Cancelled."
             break
@@ -155,6 +156,7 @@ class Stud
             puts Errors.InvalidYN
           end
         end
+      end
     end
   end
 

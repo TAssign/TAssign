@@ -95,6 +95,7 @@ module Glob
         out_file.write(JSON.pretty_generate(data))
         out_file.close
       else
+        FileUtils.mkdir_p(File.dirname(file))
         File.new(file, "w+")
         write(file, data)
       end
