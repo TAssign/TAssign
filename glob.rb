@@ -32,7 +32,7 @@ module Glob
     @curr_stud = nil
     def self.set_stud(stud)
       @curr_stud = stud
-      set_prompt("(" + white(@curr_stud.username) + ") $ ")
+      set_prompt("(" + Glob.white(@curr_stud.username) + ") $ ")
     end
 
     def self.curr_stud

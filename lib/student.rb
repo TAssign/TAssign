@@ -19,9 +19,9 @@ class Student < JSONify
     Glob::FileHandler.users + @username + ".json"
   end
 
-  def self.get_user(name)
-    puts(Glob::FileHandler.read(Glob::FileHandler.users + name + ".json"))
-    OpenStruct.new(Glob::FileHandler.read(Glob::FileHandler.users + name + ".json"))
+  def self.get_stud(name)
+    stud = OpenStruct.new(Glob::FileHandler.read(Glob::FileHandler.users + name + ".json"))
+    Student.new(stud["@username"], stud["@name"], stud["@email"])
   end
 
   # Get all existing students
@@ -39,6 +39,4 @@ class Student < JSONify
     end
     all
   end
-
 end
-

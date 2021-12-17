@@ -36,11 +36,13 @@ class Stud
         else
           puts "No username entered.\nFollow 'stud -n <username>'\n"
         end
+    elsif options.length == 0
+      puts "Check if logged in"
     elsif options[0][0...2] == "-a"
       all(options[0])
     elsif Student.all.include? options[0]
       puts "Successfully logged into " + Glob.white(options[0])
-      Glob::TassConfig.set_stud()
+      Glob::TassConfig.set_stud(Student.get_stud(options[0]))
     else
       puts "Invalid options or user. Please see " + Glob.white("help stud") + " for more information"
       puts "or use " + Glob.white("stud -a") + " to view existing users."
@@ -56,7 +58,7 @@ class Stud
   end
 
   def self.desc
-    "Select or create a student"
+    "Select, create, or switch students"
   end
 
   def self.options
