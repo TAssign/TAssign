@@ -14,6 +14,10 @@ class Stud
       "Student " + Glob.white(stud) + " already exists.\n"\
       + "Use " + Glob.white("stud " + stud) + " to log in."
     end
+
+    def self.InvalidDelete
+      "Invalid delete options."
+    end
   end
 
   #
@@ -36,6 +40,31 @@ class Stud
         else
           puts "No username entered.\nFollow 'stud -n <username>'\n"
         end
+    elsif options[0] == "-d"
+      if options.length == 1
+        puts Errors.InvalidDelete
+      else
+        if Student.exists? options[1]
+          print "Are you sure you want to remove " + Glob.white(options[1]) + "? (yY/nN) "
+          while true
+            conf = gets.chomp
+            unless conf.empty?
+              if conf.downcase == "y"
+                Student.remove(options[1])
+                puts "User " + options[1] + " removed."
+                break
+              elsif conf.downcase == "n"
+                puts "Cancelled."
+                break
+              else
+                print "Invalid option. Please enter yY/nN."
+              end
+            end
+          end
+        else
+          puts Glob.white(options[1]) + " does not exist."
+        end
+      end
     elsif options.length == 0
       if Glob::TassConfig.logged_in?
         puts "Current student: " + Glob.white(Glob::TassConfig.curr_stud.username)

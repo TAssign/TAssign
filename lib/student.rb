@@ -27,6 +27,15 @@ class Student < JSONify
     }
   end
 
+  def self.exists?(name)
+    return Student.all.include? name
+  end
+
+  def self.remove(name)
+    pth = Student.get_stud(name).file
+    File.delete(pth) if File.exist?(pth)
+  end
+
   def self.get_stud(name)
     stud = OpenStruct.new(Glob::FileHandler.read(Glob::FileHandler.users + name + ".json"))
     Student.new(stud["username"], stud["name"], stud["email"])
