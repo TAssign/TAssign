@@ -147,6 +147,7 @@ class Stud
               Student.remove(stud)
               puts "Student " + Glob.white(stud) + " removed."
               break
+            end
           elsif conf.downcase == "n"
             puts "Cancelled."
             break
