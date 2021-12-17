@@ -47,12 +47,12 @@ class Student < JSONify
     studs = ""
     all = []
     if not Dir.empty?(Glob::FileHandler.users)
-      Dir.foreach(Glob::FileHandler.users) do |name|
-        unless name=='.' or name=='..'
-          all.push(name[0,name.length-5])
-        end
+      Dir.chdir(Glob::FileHandler.users) do
+        Dir.glob('*').select { |f| all.push(f) }
       end
     end
     all
   end
 end
+
+puts Student.all
