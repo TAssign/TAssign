@@ -1,6 +1,6 @@
 # Global methods and variables
 module Glob
-  require "colorize"
+  require 'colorize'
   #
   # Colorize functions for easier colorizing
   #
@@ -37,6 +37,10 @@ module Glob
 
     def self.curr_stud
       @curr_stud
+    end
+
+    def self.logged_in?
+      @curr_stud != nil
     end
   end
 
