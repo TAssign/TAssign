@@ -27,7 +27,7 @@ class Stud
         if options[1] != nil
           if not Student.all.include? options[1]
             ns = Student.new(username=options[1])
-            ns_hash = ns.hash
+            ns_hash = ns.hashit
             Glob::FileHandler.write(ns.file, ns_hash)
             puts "Success.\nUser '" + ns.username + "' created."
           else

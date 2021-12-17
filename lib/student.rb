@@ -19,9 +19,17 @@ class Student < JSONify
     Glob::FileHandler.users + @username + ".json"
   end
 
+  def hashit
+    {
+      "username" => @username,
+      "name" => name,
+      "email" => email
+    }
+  end
+
   def self.get_stud(name)
     stud = OpenStruct.new(Glob::FileHandler.read(Glob::FileHandler.users + name + ".json"))
-    Student.new(stud["@username"], stud["@name"], stud["@email"])
+    Student.new(stud["username"], stud["name"], stud["email"])
   end
 
   # Get all existing students
