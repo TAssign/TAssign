@@ -37,7 +37,7 @@ class Student < JSONify
   end
 
   def self.get_stud(name)
-    stud = OpenStruct.new(Glob::FileHandler.read(Glob::FileHandler.users + name + ".json"))
+    stud = OpenStruct.new(Glob::FileHandler.read(Glob::FileHandler.users + name + "/config.json"))
     Student.new(stud["username"], stud["name"], stud["email"])
   end
 

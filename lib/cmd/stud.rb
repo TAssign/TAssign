@@ -45,14 +45,14 @@ class Stud
         else
           puts "No username entered.\nFollow 'stud -n <username>'\n"
         end
-    elsif options[0][0...2] == "-d"
-      del(options)
     elsif options.length == 0
       if Glob::TassConfig.logged_in?
         puts "Current student: " + Glob.white(Glob::TassConfig.curr_stud.username)
       else
         puts "You are not currently logged in."
       end
+    elsif options[0][0...2] == "-d"
+      del(options)
     elsif options[0][0...2] == "-a"
       all(options[0])
     elsif Student.all.include? options[0]
