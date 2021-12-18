@@ -31,6 +31,11 @@ class Stud
     def self.InvalidYN
       "Invalid options. Please input yY/nN."
     end
+
+    def self.NotLoggedIn
+      "You are not currently logged in."
+    end
+
   end
 
   #
@@ -60,7 +65,7 @@ class Stud
       if Glob::TassConfig.logged_in?
         puts "Current student: " + Glob.white(Glob::TassConfig.curr_stud.username)
       else
-        puts "You are not currently logged in."
+        puts Errors.NotLoggedIn
       end
     elsif options[0][0...2] == "-d"
       del(options)
@@ -68,6 +73,8 @@ class Stud
       all(options[0])
     elsif Student.all.include? options[0]
       Glob::TassConfig.set_stud(Student.get_stud(options[0]))
+    elsif options[0] == "--out"
+      out
     else
       puts "Invalid options or user. Please see " + Glob.white("help stud") + " for more information"
       puts "or use " + Glob.white("stud -a") + " to view existing users."
@@ -93,7 +100,9 @@ class Stud
     ""+Glob.white("\t\t-d[a]") + " : " + Glob.white("stud -d <username>") + " or " + Glob.white("stud -da\n")+""\
     "\t\t\tDelete all or one student\n"\
     ""+Glob.white("\t\t-a[v]") + " : " + Glob.white("stud -a[v]\n")+""\
-    "\t\t\tPrint all existing users.\n\t\t\tUse " + Glob.white("-av") + " for verbosity."
+    "\t\t\tPrint all existing users.\n\t\t\tUse " + Glob.white("-av") + " for verbosity.\n"\
+    ""+Glob.white("\t\t--out") + " : " + Glob.white("stud --out")+"\n"\
+    "\t\t\tLog out of the current user"
   end
 
   #
@@ -168,6 +177,15 @@ class Stud
           end
         end
       end
+    end
+  end
+
+  def self.out
+    if Glob::TassConfig.logged_in?
+      puts "Logged out of " + Glob.white(Glob::TassConfig.curr_stud.username)
+      Glob::TassConfig.log_out
+    else
+      puts Errors.NotLoggedIn
     end
   end
 

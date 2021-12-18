@@ -17,6 +17,7 @@ module Glob
     #
     # Prompt configurations
     #
+    @base_pr = "$ "
     @pr = "$ "
     def self.prompt
       @pr
@@ -42,6 +43,11 @@ module Glob
 
     def self.logged_in?
       @curr_stud != nil
+    end
+
+    def self.log_out
+      @curr_stud = nil
+      set_prompt(@base_pr)
     end
   end
 
