@@ -1,6 +1,12 @@
 Dir.foreach("lib/cmd/") do |file|
-  if file != "help.rb" and file != "." and file != ".."
+  if File.file?(file) and file != "help.rb" and file != "." and file != ".."
     require_relative file
+  elsif File.directory?(file)
+    Dir.foreach("lib/cmd/" + file) do |file|
+      if File.file?(file) and file != "." and file != ".."
+        require_relative file
+      end
+    end
   end
 end
 
@@ -13,7 +19,7 @@ class Help
       put_first.each { |cmd|
         doc cmd
       }
-      all_cmds(false).each do |cmd|
+      cmds(false, Glob::TassConfig.logged_in?).each do |cmd|
         if not put_first.include? cmd
           doc cmd
         end
@@ -53,19 +59,31 @@ class Help
     end
   end
 
-  def self.all_cmds(str)
+  def self.cmds(str, logged) 
+    dir = "lib/cmd/"
+    dir += logged ? "logged" : ""
+
     all = []
 
-    Dir.foreach("lib/cmd/") do |file|
+    Dir.foreach(dir) do |file|
       if file != "." and file != ".."
-        cmd = File.basename(file, ".rb").capitalize
-        if not str
-          cmd = classify(cmd)
+        if File.file?(file) and file != "." and file != ".."
+          cmd = File.basename(file, ".rb").capitalize
+          if not str
+            cmd = classify(cmd)
+          end
+          all.push(cmd)
         end
-        all.push(cmd)
       end
     end
-
     all
+  end
+
+  def self.all_cmds(str)
+    cmds(str, false)
+  end
+
+  def self.logged_cmds(str)
+    cmds(str, true)
   end
 end
