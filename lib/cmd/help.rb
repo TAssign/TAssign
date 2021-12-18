@@ -49,7 +49,7 @@ class Help
 
   private
   def self.classify(class_str)
-    Object.const_get(class_str.capitalize)
+    Object.const_get(class_str)
   end
   def self.doc(cmd)
     puts ""
@@ -61,13 +61,15 @@ class Help
 
   def self.cmds(str, logged) 
     dir = "lib/cmd/"
-    dir += logged ? "logged" : ""
+    dir += logged ? "logged/" : ""
+    if logged
+      puts("LOGGED IN HELP")
+    end
 
     all = []
-
     Dir.foreach(dir) do |file|
       if file != "." and file != ".."
-        if File.file?(file) and file != "." and file != ".."
+        if File.file?(dir+file) and file != "." and file != ".."
           cmd = File.basename(file, ".rb").capitalize
           if not str
             cmd = classify(cmd)
