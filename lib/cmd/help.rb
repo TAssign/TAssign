@@ -62,9 +62,6 @@ class Help
   def self.cmds(str, logged) 
     dir = "lib/cmd/"
     dir += logged ? "logged/" : ""
-    if logged
-      puts("LOGGED IN HELP")
-    end
 
     all = []
     Dir.foreach(dir) do |file|

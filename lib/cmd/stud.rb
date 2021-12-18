@@ -6,13 +6,22 @@ class Stud
   #
 
   class Errors
+
+    def self.NameRedList
+      ["-n","-a","-av","-d","-da","--out"]
+    end
+
     def self.InvalidStudAll
       "Invalid options for " + Glob.white("stud -a")
     end
 
-    def self.StudentExists(stud)
-      "Student " + Glob.white(stud) + " already exists.\n"\
-      + "Use " + Glob.white("stud " + stud) + " to log in."
+    def self.NameNotAllowed(stud, red)
+      if red
+        Glob.white(stud) + " is not an allowed name."
+      else
+        "Student " + Glob.white(stud) + " already exists.\n"\
+        + "Please use " + Glob.white("stud " + stud) + " to log in."
+      end
     end
 
     def self.InvalidDelete
@@ -33,14 +42,16 @@ class Stud
 
     if options[0] == "-n"
         if options[1] != nil
-          if not Student.all.include? options[1]
+          if Student.all.include? options[1]
+            puts Errors.NameNotAllowed(options[1], false)
+          elsif Errors.NameRedList.include? options[1]
+            puts Errors.NameNotAllowed(options[1], true)
+          else
             ns = Student.new(username=options[1])
             ns_hash = ns.hashit
             Glob::FileHandler.write(ns.file, ns_hash)
             puts "Success.\nUser '" + ns.username + "' created."
             Glob::TassConfig.set_stud(Student.get_stud(options[1]))
-          else
-            puts Errors.StudentExists(options[1])
           end
         else
           puts "No username entered.\nFollow 'stud -n <username>'\n"
@@ -164,4 +175,3 @@ class Stud
   # END HELPER FUNCTIONS
   #
 end
-
