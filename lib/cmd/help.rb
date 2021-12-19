@@ -75,7 +75,9 @@ class Help
 
   def self.cmds(str, logged) 
     all = dir_cmds("lib/cmd/", str)
-    all.concat(dir_cmds("lib/cmd/logged/", str))
+    if logged
+      all.concat(dir_cmds("lib/cmd/logged/", str))
+    end
     all
   end
 end
