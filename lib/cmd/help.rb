@@ -80,7 +80,7 @@ class Help
   end
   def self.doc(cmd)
     puts ""
-    puts cmd.name + "\n\t" + cmd.desc
+    puts Glob.white(cmd.name) + "\n\t" + cmd.desc
     if cmd.methods.include? :options
       puts cmd.options
     end
