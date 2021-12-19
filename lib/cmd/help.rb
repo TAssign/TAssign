@@ -1,3 +1,7 @@
+#
+# IMPORTS
+#
+
 Dir.foreach("lib/cmd/") do |file|
   if File.file?(file) and file != "help.rb" and file != "." and file != ".."
     require_relative file
@@ -10,7 +14,18 @@ Dir.foreach("lib/cmd/") do |file|
   end
 end
 
+#
+# END IMPORTS
+#
+# START HELP CLASS
+#
+
 class Help
+
+  #
+  # CALL METHOD
+  #
+  
   def self.call(opts=["help"])
     opts.shift()
 
@@ -39,6 +54,12 @@ class Help
     end
   end
 
+  #
+  # END CALL METHOD
+  #
+  # DOC INFORMATION
+  #
+  
   def self.name
     "help"
   end
@@ -46,6 +67,12 @@ class Help
   def self.desc
     "Get information about TAssign commands"
   end
+
+  #
+  # DOC INFORMATION END
+  #
+  # HELPER FUNCTIONS BEGIN
+  #
 
   private
   def self.classify(class_str)
@@ -80,4 +107,8 @@ class Help
     end
     all
   end
+
+  #
+  # HELPER FUNCTIONS END
+  #
 end
