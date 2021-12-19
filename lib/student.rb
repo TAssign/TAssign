@@ -11,6 +11,8 @@ class Student < JSONify
     @username = username
     @name = name
     @email = email
+    
+    self.setup
   end
 
   # Get the directory of the student's json file
@@ -19,12 +21,21 @@ class Student < JSONify
     Glob::FileHandler.users + @username + "/config.json"
   end
 
+  def dir
+    Glob::FileHandler.users + @username + "/"
+  end
+
   def hashit
     {
       "username" => @username,
       "name" => name,
       "email" => email
     }
+  end
+
+  def setup
+    FileUtils.mkdir_p(dir + "terms")
+    FileUtils.mkdir_p(dir + "todos")
   end
 
   def self.exists?(name)

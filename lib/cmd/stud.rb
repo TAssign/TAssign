@@ -112,6 +112,9 @@ class Stud
   #
 
   private
+  #
+  # ALL
+  #
   def self.all(opts)
     if opts.length > 3
       puts Errors.InvalidStudAll
@@ -134,6 +137,9 @@ class Stud
     end
   end
 
+  #
+  # DEL
+  #
   def self.del(opts)
     if opts[0] == "-d" and opts.length == 1
       puts Errors.InvalidDelete
@@ -180,6 +186,9 @@ class Stud
     end
   end
 
+  #
+  # OUT
+  #
   def self.out
     if Glob::TassConfig.logged_in?
       puts "Logged out of " + Glob.white(Glob::TassConfig.curr_stud.username)
