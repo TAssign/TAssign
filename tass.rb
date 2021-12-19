@@ -2,6 +2,7 @@ require 'fileutils'
 require 'json'
 require_relative 'glob.rb'
 Dir["lib/cmd/*.rb"].each {|file| require_relative file}
+Dir["lib/cmd/logged/*.rb"].each {|file| require_relative file}
 
 include Glob
 
@@ -83,6 +84,9 @@ while true
 
     when "stud"
       Stud.call(opts)
+    
+    when "out"
+      Out.call(opts)
 
     else
       puts "Command '" + cmd + "' does not exist.\nUser 'help' for more info."
