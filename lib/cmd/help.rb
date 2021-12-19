@@ -27,7 +27,7 @@ class Help
       puts ""
     elsif opts.length > 1
       puts Glob.white("help") + " only takes 0 or 1 arguments."
-    elsif all_cmds(true).include? opts[0].capitalize or opts[0] == "exit"
+    elsif cmds(true, Glob::TassConfig.logged_in?).include? opts[0].capitalize or opts[0] == "exit"
       opt = opts[0]
       if opt == "exit"
         opt = "quit"
@@ -59,30 +59,23 @@ class Help
     end
   end
 
-  def self.cmds(str, logged) 
-    dir = "lib/cmd/"
-    dir += logged ? "logged/" : ""
-
-    all = []
+  def self.dir_cmds(dir, str)
+    cmds = []
     Dir.foreach(dir) do |file|
-      if file != "." and file != ".."
-        if File.file?(dir+file) and file != "." and file != ".."
-          cmd = File.basename(file, ".rb").capitalize
-          if not str
-            cmd = classify(cmd)
-          end
-          all.push(cmd)
+      if file != "." and file != ".." and File.file?(dir+file)
+        cmd = File.basename(file, ".rb").capitalize
+        if not str
+          cmd = classify(cmd)
         end
+        cmds.push(cmd)
       end
     end
+    cmds
+  end
+
+  def self.cmds(str, logged) 
+    all = dir_cmds("lib/cmd/", str)
+    all.concat(dir_cmds("lib/cmd/logged/", str))
     all
-  end
-
-  def self.all_cmds(str)
-    cmds(str, false)
-  end
-
-  def self.logged_cmds(str)
-    cmds(str, true)
   end
 end
