@@ -82,6 +82,7 @@ class Help
     puts ""
     puts Glob.white(cmd.name) + "\n\t" + cmd.desc
     if cmd.methods.include? :options
+      puts "\tOptions:\n"
       puts cmd.options
     end
   end

@@ -54,7 +54,6 @@ class Config
   end
 
   def self.options
-      "\tOptions:\n"\
       ""+Glob.white("\t\tstartup on[off]") + " : " + Glob.white("config startup off")+"\n"\
       "\t\t\tTurn off the startup tip for getting started."
   end

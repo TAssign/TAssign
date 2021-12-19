@@ -94,15 +94,12 @@ class Stud
   end
 
   def self.options
-    "\tOptions:\n"\
     ""+Glob.white("\t\t-n") + " : " + Glob.white("stud -n <username>\n")+""\
     "\t\t\tCreates a new student with the username username\n"\
     ""+Glob.white("\t\t-d[a]") + " : " + Glob.white("stud -d <username>") + " or " + Glob.white("stud -da\n")+""\
     "\t\t\tDelete all or one student\n"\
     ""+Glob.white("\t\t-a[v]") + " : " + Glob.white("stud -a[v]\n")+""\
-    "\t\t\tPrint all existing users.\n\t\t\tUse " + Glob.white("-av") + " for verbosity.\n"\
-    ""+Glob.white("\t\t--out") + " : " + Glob.white("stud --out")+"\n"\
-    "\t\t\tLog out of the current user"
+    "\t\t\tPrint all existing users.\n\t\t\tUse " + Glob.white("-av") + " for verbosity."\
   end
 
   #
