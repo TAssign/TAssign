@@ -7,11 +7,11 @@ Dir["lib/cmd/logged/*.rb"].each {|file| require_relative file}
 include Glob
 
 begin
-  Glob::wdir.each do |key, value|
+  Glob::FileHandler.wdir.each do |key, value|
     unless Dir.exist?(value) or value[-1] != '/'
       FileUtils.mkdir_p(value)
     end
-    if File.zero?(Glob::wdir['config'])
+    if File.zero?(Glob::FileHandler.wdir['config'])
       configf = Glob::wdir['config']
       dosm = { "start_msg" => true }
       Glob::FileHandler.write(configf, dosm)
@@ -46,7 +46,7 @@ welcome = Array[
   "                         \\_______/\n"
 ]
 
-if Glob::FileHandler.read(Glob::wdir['config'])['start_msg']
+if Glob::TassConfig.start_msg?
   startup = ["\n\nTo get started. Read the README at " + Glob.white("https://github.com/TAssign/TAssign/blob/master/README.md"),
              "Or type " + Glob.white("help") + " to explore commands.",
              "\nTip: You can stop this message from printing when starting up by entering " + Glob.white("config startup off") + "\n\n"]

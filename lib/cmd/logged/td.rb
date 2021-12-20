@@ -24,5 +24,3 @@ class Td
   end
 
 end
-
-puts Td.options

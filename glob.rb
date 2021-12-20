@@ -14,6 +14,9 @@ module Glob
   # Tass Config
   #
   class TassConfig
+    def self.start_msg?
+      Glob::FileHandler.read(Glob::FileHandler.wdir['config'])['start_msg']
+    end
     #
     # Prompt configurations
     #
@@ -52,12 +55,12 @@ module Glob
   end
 
   # Methods and variables pertaining to file io
-  module FileHandler
+  class FileHandler
     require 'json'
 
     bin = '/usr/local/bin'
     # File locations
-    @@wdir = {
+    @wdir = {
       "tass_sf" => bin + '/tassign/',
       "studs_sf" => bin + '/tassign/studs/',
       "terms_sf" => bin + '/tassign/terms/',
@@ -65,24 +68,24 @@ module Glob
     }
 
     # TAssign working directory
-    def wdir
-      @@wdir
+    def self.wdir
+      @wdir
     end
   
     # Directory for all users
-    def users
-      @@wdir["studs_sf"]
+    def self.users
+      @wdir["studs_sf"]
     end
 
     #Directory for all years
-    def years
-      @@wdir["years_sf"]
+    def self.years
+      @wdir["years_sf"]
     end
 
     # Read json file to hash
     # @param [String] the file location to read to hash
     # @return [Hash] the hashed json data or [false] if unable to find file
-    def read(file)
+    def self.read(file)
       if File.exists?(file)
         in_file = File.read(file)
         data = JSON.parse(in_file)
@@ -95,7 +98,7 @@ module Glob
     # Write to json
     # @param [String] the file location to write to
     # @param [Hash] the data to jsonify
-    def write(file, data)
+    def self.write(file, data)
       if File.exists?(file)
         out_file = File.open(file, "w+")
         out_file.write(JSON.pretty_generate(data))
@@ -106,6 +109,5 @@ module Glob
         write(file, data)
       end
     end
-
   end
 end

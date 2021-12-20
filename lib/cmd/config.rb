@@ -1,7 +1,6 @@
 require_relative '../../glob.rb'
 
 include Glob
-include Glob::FileHandler
 
 class Config
   def self.call(options=["config"])

@@ -2,7 +2,7 @@ require 'ostruct'
 require File.expand_path('../../util/JSONify.rb', __FILE__)
 require_relative '../glob.rb'
 
-include Glob::FileHandler
+include Glob
 
 class Student < JSONify
   attr_accessor :username, :name, :email
