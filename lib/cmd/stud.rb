@@ -148,10 +148,10 @@ class Stud
   #
   # DEL
   #
-  def self.del(opts)
-    if opts[0] == "-d" and opts.length == 1
+  def self.del(options)
+    if options[0] == "-d" and options.length == 1
       puts Errors.InvalidDelete
-    elsif opts[0] == "-d" and opts.length == 2
+    elsif options[0] == "-d" and options.length == 2
       if Student.exists? options[1]
         print "Are you sure you want to remove " + Glob.white(options[1]) + "? (yY/nN) "
         while true
@@ -172,8 +172,8 @@ class Stud
       else
         puts Glob.white(options[1]) + " does not exist."
       end
-    elsif opts[0] == "-da"
-      print "Are you sure you want to remove all users?"
+    elsif options[0] == "-da"
+      print "Are you sure you want to remove all users? (yY/nN)"
       while true
         conf = gets.chomp
         unless conf.empty?

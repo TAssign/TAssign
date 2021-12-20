@@ -43,7 +43,7 @@ class Student < JSONify
   end
 
   def self.remove(name)
-    pth = Student.get_stud(name).file
+    pth = Student.get_stud(name).dir
     File.delete(pth) if File.exist?(pth)
   end
 
