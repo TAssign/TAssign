@@ -16,8 +16,17 @@ class Todo
     puts "|" + " " + @name
     puts ""
     i=0
+
+    max_l = 0
     @tasks.each do |name, task|
-      puts "|   (" + i.to_s + ")  " + name + "\t|"
+      max_l = name.length > max_l ? name.length : max_l
+    end
+
+    max_l += 7
+    formatter = '%-' + max_l.to_s + '.' + max_l.to_s + 's'
+
+    @tasks.each do |name, task|
+      puts formatter % ( i.to_s + "  " + name + "\t|")
       i+=1
     end
     puts ""
