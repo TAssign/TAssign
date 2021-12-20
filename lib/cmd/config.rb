@@ -41,8 +41,29 @@ class Config
   #
   # Helper methods
   #
-  private
 
+  #
+  # Change default stud
+  #
+  def self.change_def(options)
+    if Student.exists?(options[1]) and Glob::TassConfig.def_stud != options[1] or options[1] == nil
+      conf = Glob::FileHandler.wdir['config']
+      df = Glob::FileHandler.read(conf)
+      df['default_stud'] = options[1]
+      Glob::FileHandler.write(conf, df)
+      if options[1] != nil
+        puts "Changed default user to " + Glob.white(options[1])
+      else
+        puts "Turned off default stud."
+      end
+    elsif options[1] == "--off"
+      change_def(["default-stud",nil])
+    else
+      puts "Error"
+    end
+  end
+
+  private
   #
   # Change startup options
   #
@@ -79,25 +100,5 @@ class Config
     end
   end
 
-  #
-  # Change default stud
-  #
-  def self.change_def(options)
-    if Student.exists?(options[1]) and Glob::TassConfig.def_stud != options[1] or options[1] == nil
-      conf = Glob::FileHandler.wdir['config']
-      df = Glob::FileHandler.read(conf)
-      df['default_stud'] = options[1]
-      Glob::FileHandler.write(conf, df)
-      if options[1] != nil
-        puts "Changed default user to " + Glob.white(options[1])
-      else
-        puts "Turned off default stud."
-      end
-    elsif options[1] == "--off"
-      change_def(["default-stud",nil])
-    else
-      puts "Error"
-    end
-  end
 end
 

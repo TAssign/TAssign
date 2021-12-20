@@ -119,7 +119,7 @@ class Stud
       end
 
       if Student.num_studs == 1
-        puts "set default student"
+        Config.change_def(["default-stud", options[1]])
       end
     else
       puts "No username entered.\nFollow 'stud -n <username>'\n"
@@ -158,7 +158,7 @@ class Stud
     if options[0] == "-d" and options.length == 1
       puts Errors.InvalidDelete
     elsif options[0] == "-d" and options.length == 2
-      if options[1] == Glob::TassConfig.curr_stud.username
+      if Glob::TassConfig.logged_in? and options[1] == Glob::TassConfig.curr_stud.username
         puts Errors.DeleteWhileIn
       else
         if Student.exists? options[1]
