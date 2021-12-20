@@ -36,6 +36,10 @@ class Stud
       "You are not currently logged in."
     end
 
+    def self.DeleteWhileIn
+      "You cannot delete this user while logged in.\nPlease use " + Glob.white("out") + " to log out."
+    end
+
   end
 
   #
@@ -109,7 +113,9 @@ class Stud
         ns_hash = ns.hashit
         Glob::FileHandler.write(ns.file, ns_hash)
         puts "Success.\nUser '" + ns.username + "' created."
-        Glob::TassConfig.set_stud(Student.get_stud(options[1]))
+        if not Glob::TassConfig.logged_in?
+          Glob::TassConfig.set_stud(Student.get_stud(options[1]))
+        end
       end
 
       if Student.num_studs == 1
@@ -152,14 +158,43 @@ class Stud
     if options[0] == "-d" and options.length == 1
       puts Errors.InvalidDelete
     elsif options[0] == "-d" and options.length == 2
-      if Student.exists? options[1]
-        print "Are you sure you want to remove " + Glob.white(options[1]) + "? (yY/nN) "
+      if options[1] == Glob::TassConfig.curr_stud.username
+        puts Errors.DeleteWhileIn
+      else
+        if Student.exists? options[1]
+          print "Are you sure you want to remove " + Glob.white(options[1]) + "? (yY/nN) "
+          while true
+            conf = gets.chomp
+            unless conf.empty?
+              if conf.downcase == "y"
+                Student.remove(options[1])
+                puts "Student " + Glob.white(options[1]) + " removed."
+                break
+              elsif conf.downcase == "n"
+                puts "Cancelled."
+                break
+              else
+                puts Errors.InvalidYN
+              end
+            end
+          end
+        else
+          puts Glob.white(options[1]) + " does not exist."
+        end
+      end
+    elsif options[0] == "-da"
+      if Glob::TassConfig.logged_in?
+        puts Errors.DeleteWhileIn
+      else
+        print "Are you sure you want to remove all users? (yY/nN) "
         while true
           conf = gets.chomp
           unless conf.empty?
             if conf.downcase == "y"
-              Student.remove(options[1])
-              puts "Student " + Glob.white(options[1]) + " removed."
+              Student.all.each do |stud|
+                Student.remove(stud)
+                puts "Student " + Glob.white(stud) + " removed."
+              end
               break
             elsif conf.downcase == "n"
               puts "Cancelled."
@@ -167,27 +202,6 @@ class Stud
             else
               puts Errors.InvalidYN
             end
-          end
-        end
-      else
-        puts Glob.white(options[1]) + " does not exist."
-      end
-    elsif options[0] == "-da"
-      print "Are you sure you want to remove all users? (yY/nN)"
-      while true
-        conf = gets.chomp
-        unless conf.empty?
-          if conf.downcase == "y"
-            Student.all.each do |stud|
-              Student.remove(stud)
-              puts "Student " + Glob.white(stud) + " removed."
-            end
-            break
-          elsif conf.downcase == "n"
-            puts "Cancelled."
-            break
-          else
-            puts Errors.InvalidYN
           end
         end
       end
