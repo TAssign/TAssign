@@ -46,21 +46,7 @@ class Stud
     options.shift
 
     if options[0] == "-n"
-        if options[1] != nil
-          if Student.all.include? options[1]
-            puts Errors.NameNotAllowed(options[1], false)
-          elsif Errors.NameRedList.include? options[1]
-            puts Errors.NameNotAllowed(options[1], true)
-          else
-            ns = Student.new(username=options[1])
-            ns_hash = ns.hashit
-            Glob::FileHandler.write(ns.file, ns_hash)
-            puts "Success.\nUser '" + ns.username + "' created."
-            Glob::TassConfig.set_stud(Student.get_stud(options[1]))
-          end
-        else
-          puts "No username entered.\nFollow 'stud -n <username>'\n"
-        end
+      call_cmd(options)
     elsif options.length == 0
       if Glob::TassConfig.logged_in?
         puts "Current student: " + Glob.white(Glob::TassConfig.curr_stud.username)
@@ -109,6 +95,31 @@ class Stud
   #
 
   private
+  #
+  # CALL
+  #
+  def self.call_cmd(options)
+    if options[1] != nil
+      if Student.all.include? options[1]
+        puts Errors.NameNotAllowed(options[1], false)
+      elsif Errors.NameRedList.include? options[1]
+        puts Errors.NameNotAllowed(options[1], true)
+      else
+        ns = Student.new(username=options[1])
+        ns_hash = ns.hashit
+        Glob::FileHandler.write(ns.file, ns_hash)
+        puts "Success.\nUser '" + ns.username + "' created."
+        Glob::TassConfig.set_stud(Student.get_stud(options[1]))
+      end
+
+      if Student.num_studs == 1
+        puts "set default student"
+      end
+    else
+      puts "No username entered.\nFollow 'stud -n <username>'\n"
+    end
+  end
+
   #
   # ALL
   #

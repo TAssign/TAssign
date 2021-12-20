@@ -64,6 +64,8 @@ class Student < JSONify
     end
     all
   end
-end
 
-puts Student.all
+  def self.num_studs
+    all.length
+  end
+end
