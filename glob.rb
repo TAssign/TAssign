@@ -14,9 +14,28 @@ module Glob
   # Tass Config
   #
   class TassConfig
+
+    #
+    # Start message activated?
+    #
     def self.start_msg?
       Glob::FileHandler.read(Glob::FileHandler.wdir['config'])['start_msg']
     end
+
+    #
+    # Is there a default stud?
+    #
+    def self.has_def_stud?
+      def_stud != nil
+    end
+    
+    #
+    # Get default stud
+    #
+    def self.def_stud
+      Glob::FileHandler.read(Glob::FileHandler.wdir['config'])['default_stud']
+    end
+    
     #
     # Prompt configurations
     #
@@ -35,6 +54,9 @@ module Glob
     #
     @curr_stud = nil
     def self.set_stud(stud)
+      if stud.is_a?(String)
+        stud = Student.get_stud(stud)
+      end
       @curr_stud = stud
       set_prompt("(" + Glob.white(@curr_stud.username) + ") $ ")
       puts "Successfully logged into " + Glob.white(@curr_stud.username)

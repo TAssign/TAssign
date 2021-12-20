@@ -53,6 +53,7 @@ if Glob::TassConfig.start_msg?
   welcome.concat(startup)
 end
 
+
 Clear.call
 sleep(0.1)
 for msg in welcome
@@ -60,6 +61,11 @@ for msg in welcome
   sleep(0.01)
 end
 
+if Glob::TassConfig.has_def_stud?
+  def_std = Glob::TassConfig.def_stud
+  Glob::TassConfig.set_stud(def_std)
+  puts ""
+end
 
 while true
   print Glob::TassConfig.prompt
