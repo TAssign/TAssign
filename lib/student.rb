@@ -69,3 +69,4 @@ class Student < JSONify
     all.length
   end
 end
+

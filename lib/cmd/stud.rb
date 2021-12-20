@@ -8,7 +8,7 @@ class Stud
   class Errors
 
     def self.NameRedList
-      ["-n","-a","-av","-d","-da","--out"]
+      ["-n","-a","-av","-d","-da","--off"]
     end
 
     def self.InvalidStudAll

@@ -35,7 +35,7 @@ module Glob
     def self.def_stud
       Glob::FileHandler.read(Glob::FileHandler.wdir['config'])['default_stud']
     end
-    
+
     #
     # Prompt configurations
     #
