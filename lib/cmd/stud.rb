@@ -8,7 +8,7 @@ class Stud
   class Errors
 
     def self.NameRedList
-      ["-n","-a","-av","-d","-da","--off"]
+      ["-n","-a","-av","-d","-da","off"]
     end
 
     def self.InvalidStudAll
@@ -63,8 +63,6 @@ class Stud
       all(options[0])
     elsif Student.all.include? options[0]
       Glob::TassConfig.set_stud(Student.get_stud(options[0]))
-    elsif options[0] == "--out"
-      out
     else
       puts "Invalid options or user. Please see " + Glob.white("help stud") + " for more information"
       puts "or use " + Glob.white("stud -a") + " to view existing users."
@@ -120,6 +118,8 @@ class Stud
 
       if Student.num_studs == 1
         Config.change_def(["default-stud", options[1]])
+        puts "Default user is now " + Glob.white(options[1])
+        puts "Use " + Glob.white("help config") + " for default stud configuration"
       end
     else
       puts "No username entered.\nFollow 'stud -n <username>'\n"
@@ -207,19 +207,6 @@ class Stud
       end
     end
   end
-
-  #
-  # OUT
-  #
-  def self.out
-    if Glob::TassConfig.logged_in?
-      puts "Logged out of " + Glob.white(Glob::TassConfig.curr_stud.username)
-      Glob::TassConfig.log_out
-    else
-      puts Errors.NotLoggedIn
-    end
-  end
-
   #
   # END HELPER FUNCTIONS
   #

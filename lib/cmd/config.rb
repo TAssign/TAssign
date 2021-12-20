@@ -33,9 +33,9 @@ class Config
   def self.options
       ""+Glob.white("\t\tstartup on[off]") + " : " + Glob.white("config startup off")+"\n"\
       "\t\t\tTurn off the startup tip for getting started.\n"\
-      ""+Glob.white("\t\tdefault-stud <username>/--off") + " : " + Glob.white("config default-stud doe")+"\n"\
+      ""+Glob.white("\t\tdefault-stud <username>/off") + " : " + Glob.white("config default-stud doe")+"\n"\
       "\t\t\tChange the default student to log into\n"\
-      "\t\t\tUse " + Glob.white("config default-stud --off") + " to turn off default stud."
+      "\t\t\tUse " + Glob.white("config default-stud off") + " to turn off default stud."
   end
 
   #
@@ -56,7 +56,7 @@ class Config
       else
         puts "Turned off default stud."
       end
-    elsif options[1] == "--off"
+    elsif options[1] == "off"
       change_def(["default-stud",nil])
     else
       puts "Error"
