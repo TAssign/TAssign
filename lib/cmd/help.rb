@@ -47,7 +47,7 @@ class Help
       if opt == "exit"
         opt = "quit"
       end
-      doc(classify(opt.upcase))
+      doc(classify(opt.capitalize))
       puts ""
     else
       puts "Command " + Glob.white(opts[0]) + " not found..."
