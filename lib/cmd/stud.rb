@@ -1,4 +1,4 @@
-require_relative '../student.rb'
+require_relative '../edu/student.rb'
 class Stud
 
   #

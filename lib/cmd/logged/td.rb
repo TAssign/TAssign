@@ -23,4 +23,14 @@ class Td
     "\t\t\tDelete a to-do list with name " + Glob.white("name")
   end
 
+
+  private
+
+  def self.new_list(options)
+    
+  end
+
+  def self.del_list(options)
+
+  end
 end
