@@ -1,6 +1,6 @@
 require 'ostruct'
 require File.expand_path('../../../util/JSONify.rb', __FILE__)
-require_relative '../glob.rb'
+require_relative '../../glob.rb'
 
 include Glob
 

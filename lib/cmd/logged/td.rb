@@ -5,6 +5,11 @@ include Glob
 class Td
 
   def self.call(opts)
+    if opts[0] == "-n"
+      puts "cool"
+    else
+      puts "Invalid " + "td".light_white + " options"
+    end
   end
 
   def self.name
@@ -34,3 +39,4 @@ class Td
 
   end
 end
+
