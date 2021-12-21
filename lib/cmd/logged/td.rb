@@ -21,7 +21,6 @@ class Td
   end
 
   def self.options
-    "\tOptions:\n"\
     ""+Glob.white("\t\t-n") + " : " + Glob.white("td -n name")+"\n"\
     "\t\t\tCreate a new to-do list with name " + Glob.white("name\n")+""\
     ""+Glob.white("\t\t-d") + " : " + Glob.white("td -d name")+"\n"\
