@@ -5,10 +5,14 @@ include Glob
 class Td
 
   def self.call(opts)
-    if opts[0] == "-n"
-      puts "cool"
+    if Glob::TassConfig.logged_in?
+      if opts[1] == "-n"
+        puts "cool"
+      else
+        puts "Invalid " + "td".light_white + " options"
+      end
     else
-      puts "Invalid " + "td".light_white + " options"
+      puts "Please log in to open a to-do list."
     end
   end
 

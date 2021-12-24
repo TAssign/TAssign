@@ -147,7 +147,7 @@ class Stud
           studs += stud + "\t"
         end
       end
-      puts studs
+      puts studs.light_white
     end
   end
 

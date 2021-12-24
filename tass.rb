@@ -94,6 +94,9 @@ while true
     when "out"
       Out.call(opts)
 
+    when "td"
+      Td.call(opts)
+
     else
       puts "Command '" + cmd + "' does not exist.\nUser 'help' for more info."
     end
