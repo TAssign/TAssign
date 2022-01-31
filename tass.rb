@@ -85,18 +85,6 @@ while true
     when "clear"
       Clear.call
 
-    when "config"
-      Config.call(opts)
-
-    when "stud"
-      Stud.call(opts)
-    
-    when "out"
-      Out.call(opts)
-
-    when "td"
-      Td.call(opts)
-
     else
       puts "Command '" + cmd + "' does not exist.\nUser 'help' for more info."
     end
